@@ -125,7 +125,7 @@ heart3 = display.newImageRect("Images/heart.png", 100, 100)
 heart3.x = display.contentWidth * 5.8 / 8
 heart3.y = display.contentHeight * 1 / 13
 
---create the lives to display on the screen
+--create the lives to display on the screenF
 heart4 = display.newImageRect("Images/heart.png", 100, 100)
 heart4.x = display.contentWidth * 5 / 8
 heart4.y = display.contentHeight * 1 / 13
