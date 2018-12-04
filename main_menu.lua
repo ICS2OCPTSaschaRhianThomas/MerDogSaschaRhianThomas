@@ -83,21 +83,19 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
     -- BACKGROUND IMAGE & STATIC OBJECTS
     -----------------------------------------------------------------------------------------
-    -- added bkg colour
-    bkg = display.setDefault("background", 204/255, 204/255, 255/255)
 
     -- Insert the background image and set it to the center of the screen (dont have the image)
-    --bkg_image = display.newImage("Images/main_menu.png")
-    --bkg_image.x = display.contentCenterX
-    --bkg_image.y = display.contentCenterY
-    --bkg_image.width = display.contentWidth
-    --bkg_image.height = display.contentHeight
+    bkg_image = display.newImage("Images/main_menu.png")
+    bkg_image.x = display.contentCenterX
+    bkg_image.y = display.contentCenterY
+    bkg_image.width = display.contentWidth
+    bkg_image.height = display.contentHeight
 
     -- Associating display objects with this scene 
-    --sceneGroup:insert( bkg_image )
+   sceneGroup:insert( bkg_image )
 
     -- Send the background image to the back layer so all other objects can be on top
-    --bkg_image:toBack()
+    bkg_image:toBack()
 
     ----------------------------------------------------------------------------------------
     -- SOUNDS
