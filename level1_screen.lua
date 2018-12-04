@@ -380,16 +380,16 @@ function scene:create( event )
     bkg.height = display.contentHeight
 
     -- create the text object that will hold the add equation. Make it empty for now.
-    addEquationTextObject = display.newText( "", display.contentWidth*2.7/4, display.contentHeight*2/5, nil, 90 )
+    addEquationTextObject = display.newText( "", display.contentWidth*4.5/10, display.contentHeight*2/10, nil, 90 )
 
     -- sets the color of the add equation text object
-    addEquationTextObject:setTextColor(0/255, 255/255, 0/255)
+    addEquationTextObject:setTextColor(255/255, 255/255, 100/255)
 
     -- create the text objects that will hold the correct answer and the wrong answers
-    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight/2, nil, 70 )
-    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight/2, nil, 65 )
-    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight/2, nil, 65 )
-    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight/2, nil, 65 )
+    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight*2.8/10, nil, 65 )
+    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight*2.8/10, nil, 65 )
+    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight*2.8/10, nil, 65 )
+    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight*2.8/10, nil, 65 )
     --numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 30)
     --numberIncorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 50)
 
