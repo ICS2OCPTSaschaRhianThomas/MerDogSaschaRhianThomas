@@ -61,10 +61,10 @@ local wrongAnswer2TextObject
 local wrongAnswer3TextObject
 
 -- displays the number correct that the user has
-local numberCorrectText 
+--local numberCorrectText 
 
 -- displays the number incorrect that the user has
-local numberIncorrectText 
+--local numberIncorrectText 
 
 -- displays the lives
 local livesText 
@@ -73,6 +73,9 @@ local heart1
 local heart2
 local heart3
 local heart4
+
+-- character
+local character
 
 -- the text displaying congratulations
 local congratulationText 
@@ -105,27 +108,33 @@ local incorrectSound = audio.loadSound("Sounds/WrongBuzzer.mp3" )
 local incorrectSoundChannel
 
 -------------------------------------------------
--- Creat lives
+-- Creat lives and characters
 ------------------------------------------------
 --create the lives to display on the screen
 heart1 = display.newImageRect("Images/heart.png", 100, 100)
-heart1.x = display.contentWidth * 7 / 8
-heart1.y = display.contentHeight * 1 / 7
+heart1.x = display.contentWidth * 7.4 / 8
+heart1.y = display.contentHeight * 1 / 13
 
 --create the lives to display on the screen
 heart2 = display.newImageRect("Images/heart.png", 100, 100)
-heart2.x = display.contentWidth * 6 / 8
-heart2.y = display.contentHeight * 1 / 7
+heart2.x = display.contentWidth * 6.6 / 8
+heart2.y = display.contentHeight * 1 / 13
 
 --create the lives to display on the screen
 heart3 = display.newImageRect("Images/heart.png", 100, 100)
-heart3.x = display.contentWidth * 5 / 8
-heart3.y = display.contentHeight * 1 / 7
+heart3.x = display.contentWidth * 5.8 / 8
+heart3.y = display.contentHeight * 1 / 13
 
 --create the lives to display on the screen
 heart4 = display.newImageRect("Images/heart.png", 100, 100)
-heart4.x = display.contentWidth * 4 / 8
-heart4.y = display.contentHeight * 1 / 7
+heart4.x = display.contentWidth * 5 / 8
+heart4.y = display.contentHeight * 1 / 13
+
+character = display.newImageRect("Images/Mermaid.png", 100, 150)
+character.x = display.contentWidth * 2.2/ 8
+character.y = display.contentHeight  * 4/ 8
+character.width = 700
+character.height = 700
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -220,8 +229,8 @@ local function RestartScene()
     correct.isVisible = false
     incorrect.isVisible = false
 
-    livesText.text = "Number of lives = " .. tostring(lives)
-    numberCorrectText.text = "Number correct = " .. tostring(numberCorrect)
+    --livesText.text = "Number of lives = " .. tostring(lives)
+    --numberCorrectText.text = "Number correct = " .. tostring(numberCorrect)
 
     -- if they have 0 lives, go to the You Lose screen
     if (lives == 0) then
@@ -381,8 +390,8 @@ function scene:create( event )
     wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight/2, nil, 65 )
     wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight/2, nil, 65 )
     wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight/2, nil, 65 )
-    numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 30)
-    numberIncorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 50)
+    --numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 30)
+    --numberIncorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 50)
 
     -- create the text object that will hold the number of lives
     livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
@@ -413,8 +422,8 @@ function scene:create( event )
     
     -- Insert objects into scene group
     sceneGroup:insert( bkg )  
-    sceneGroup:insert( numberCorrectText )
-    sceneGroup:insert( numberIncorrectText )
+    --sceneGroup:insert( numberCorrectText )
+    --sceneGroup:insert( numberIncorrectText )
     sceneGroup:insert( livesText )
     sceneGroup:insert( addEquationTextObject )
     sceneGroup:insert( answerTextObject )
