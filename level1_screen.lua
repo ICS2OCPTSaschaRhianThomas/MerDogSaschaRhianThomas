@@ -76,6 +76,7 @@ local heart4
 
 -- character
 local character
+local character2
 
 -- the text displaying congratulations
 local congratulationText 
@@ -135,6 +136,12 @@ character.x = display.contentWidth * 2.2/ 8
 character.y = display.contentHeight  * 4/ 8
 character.width = 700
 character.height = 700
+
+character2 = display.newImageRect("Images/Dog.png", 100, 150)
+character2.x = display.contentWidth * 6.7/ 8
+character2.y = display.contentHeight  * 6/ 8
+character2.width = 300
+character2.height = 300
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
