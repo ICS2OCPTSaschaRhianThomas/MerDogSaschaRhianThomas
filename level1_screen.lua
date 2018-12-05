@@ -166,33 +166,33 @@ local function DisplayAnswers( )
 
     if (answerPosition == 1) then                
         
-        answerTextObject.x = display.contentWidth*.7        
-        wrongAnswer1TextObject.x = display.contentWidth*.6
-        wrongAnswer2TextObject.x = display.contentWidth*.5
-        wrongAnswer3TextObject.x = display.contentWidth*.8 
+        answerTextObject.x = display.contentWidth*.55        
+        wrongAnswer1TextObject.x = display.contentWidth*.45
+        wrongAnswer2TextObject.x = display.contentWidth*.35
+        wrongAnswer3TextObject.x = display.contentWidth*.65 
 
 
     elseif (answerPosition == 2) then
        
-        answerTextObject.x = display.contentWidth*.6        
-        wrongAnswer1TextObject.x = display.contentWidth*.5
-        wrongAnswer2TextObject.x = display.contentWidth*.7
-        wrongAnswer3TextObject.x = display.contentWidth*.8  
+        answerTextObject.x = display.contentWidth*.45        
+        wrongAnswer1TextObject.x = display.contentWidth*.35
+        wrongAnswer2TextObject.x = display.contentWidth*.55
+        wrongAnswer3TextObject.x = display.contentWidth*.65  
 
     elseif (answerPosition == 3) then
        
-        answerTextObject.x = display.contentWidth*.8        
-        wrongAnswer1TextObject.x = display.contentWidth*.5
-        wrongAnswer2TextObject.x = display.contentWidth*.7
-        wrongAnswer3TextObject.x = display.contentWidth*.6 
+        answerTextObject.x = display.contentWidth*.65        
+        wrongAnswer1TextObject.x = display.contentWidth*.35
+        wrongAnswer2TextObject.x = display.contentWidth*.55
+        wrongAnswer3TextObject.x = display.contentWidth*.45 
 
 
     else
        
-        answerTextObject.x = display.contentWidth*.5        
-        wrongAnswer1TextObject.x = display.contentWidth*.6
-        wrongAnswer2TextObject.x = display.contentWidth*.7
-        wrongAnswer3TextObject.x = display.contentWidth*.8 
+        answerTextObject.x = display.contentWidth*.35        
+        wrongAnswer1TextObject.x = display.contentWidth*.45
+        wrongAnswer2TextObject.x = display.contentWidth*.55
+        wrongAnswer3TextObject.x = display.contentWidth*.65 
     end
 
 end
@@ -212,6 +212,11 @@ end
 -- Function that transitions to Lose Screen
 local function LoseScreenTransition( )        
     composer.gotoScene( "you_lose", {effect = "zoomInOutFade", time = 1000})
+end 
+
+-- Function that transitions to Lose Screen
+local function WinScreenTransition( )        
+    composer.gotoScene( "you_win", {effect = "zoomInOutFade", time = 1000})
 end 
 
 -- The function that displays the equation and determines the answer and the wrong answers
@@ -242,6 +247,12 @@ local function RestartScene()
     -- if they have 0 lives, go to the You Lose screen
     if (lives == 0) then
         composer.gotoScene("you_lose")
+        character.isVisible = false
+        character2.isVisible = false
+        heart1.isVisible = false
+        heart2.isVisible = false
+        heart3.isVisible = false
+        heart4.isVisible = false
     else 
 
         DisplayAddEquation()
@@ -387,7 +398,7 @@ function scene:create( event )
     bkg.height = display.contentHeight
 
     -- create the text object that will hold the add equation. Make it empty for now.
-    addEquationTextObject = display.newText( "", display.contentWidth*4.5/10, display.contentHeight*2/10, nil, 90 )
+    addEquationTextObject = display.newText( "", display.contentWidth*5/10, display.contentHeight*2/10, nil, 90 )
 
     -- sets the color of the add equation text object
     addEquationTextObject:setTextColor(255/255, 255/255, 100/255)
@@ -397,24 +408,17 @@ function scene:create( event )
     wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight*2.8/10, nil, 65 )
     wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight*2.8/10, nil, 65 )
     wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight*2.8/10, nil, 65 )
-    --numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 30)
-    --numberIncorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 50)
 
     -- create the text object that will hold the number of lives
     livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
 
-    -- create the text object that will say congratulations, set the colour and then hide it
-    congratulationText = display.newText("Good job!", display.contentWidth/2, display.contentHeight*2/5, nil, 50 )
-    congratulationText:setTextColor(57/255, 230/255, 0)
-    congratulationText.isVisible = false
-
     -- create the text object that will say Correct, set the colour and then hide it
-    correct = display.newText("Correct!", display.contentWidth*8/10, display.contentHeight*1/10, nil, 100 )
+    correct = display.newText("Correct!", display.contentWidth*8.5/10, display.contentHeight*2/10, nil, 70 )
     correct:setTextColor(0/255, 255/255, 0/255)
     correct.isVisible = false
 
         -- create the text object that will say Incorrect, set the colour and then hide it
-    incorrect = display.newText("Incorrect!", display.contentWidth*8/10, display.contentHeight*1/10, nil, 100 )
+    incorrect = display.newText("Incorrect!", display.contentWidth*8.5/10, display.contentHeight*2/10, nil, 70 )
     incorrect:setTextColor(255/255, 0/255, 0/255)
     incorrect.isVisible = false
 
@@ -429,15 +433,12 @@ function scene:create( event )
     
     -- Insert objects into scene group
     sceneGroup:insert( bkg )  
-    --sceneGroup:insert( numberCorrectText )
-    --sceneGroup:insert( numberIncorrectText )
     sceneGroup:insert( livesText )
     sceneGroup:insert( addEquationTextObject )
     sceneGroup:insert( answerTextObject )
     sceneGroup:insert( wrongAnswer1TextObject )
     sceneGroup:insert( wrongAnswer2TextObject )
     sceneGroup:insert( wrongAnswer3TextObject )
-    sceneGroup:insert( congratulationText )
     sceneGroup:insert( correct )
     sceneGroup:insert( incorrect )
     sceneGroup:insert( level1Text )
