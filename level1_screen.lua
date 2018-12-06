@@ -136,6 +136,7 @@ character.x = display.contentWidth * 2.2/ 8
 character.y = display.contentHeight  * 4/ 8
 character.width = 700
 character.height = 700
+--timer.performWithDelay( 2000, character ) 
 
 character2 = display.newImageRect("Images/Dog.png", 100, 150)
 character2.x = display.contentWidth * 6.7/ 8
@@ -262,6 +263,12 @@ local function RestartScene()
 
     if (numberCorrect == 5) then
         composer.gotoScene("you_win")
+        character.isVisible = false
+        character2.isVisible = false
+        heart1.isVisible = false
+        heart2.isVisible = false
+        heart3.isVisible = false
+        heart4.isVisible = false
     end
 end
 
