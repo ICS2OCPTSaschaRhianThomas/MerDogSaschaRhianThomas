@@ -39,7 +39,7 @@ local directionLogo = 1
 
 
 -- variable for speed of the logo
-local scrollSpeedLogo = 9
+local scrollSpeedLogo = 10
 
 
 -----------------------------------------------------------------------------------------
