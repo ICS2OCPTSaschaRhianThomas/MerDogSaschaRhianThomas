@@ -47,6 +47,7 @@ local firstNumber
 local secondNumber
 
 -- the variables that will hold the correct answer and the wrong answers
+local userAnswer
 local answer 
 local wrongAnswer1
 local wrongAnswer2
@@ -69,6 +70,9 @@ local wrongAnswer3TextObject
 -- displays the lives
 local livesText 
 local lives = 4
+local numberCorrect = 0
+
+
 local heart1
 local heart2
 local heart3
@@ -108,41 +112,7 @@ local incorrectSound = audio.loadSound("Sounds/WrongBuzzer.mp3" )
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
 
--------------------------------------------------
--- Creat lives and characters
-------------------------------------------------
---create the lives to display on the screen
-heart1 = display.newImageRect("Images/heart.png", 100, 100)
-heart1.x = display.contentWidth * 7.4 / 8
-heart1.y = display.contentHeight * 1 / 13
 
---create the lives to display on the screen
-heart2 = display.newImageRect("Images/heart.png", 100, 100)
-heart2.x = display.contentWidth * 6.6 / 8
-heart2.y = display.contentHeight * 1 / 13
-
---create the lives to display on the screen
-heart3 = display.newImageRect("Images/heart.png", 100, 100)
-heart3.x = display.contentWidth * 5.8 / 8
-heart3.y = display.contentHeight * 1 / 13
-
---create the lives to display on the screenF
-heart4 = display.newImageRect("Images/heart.png", 100, 100)
-heart4.x = display.contentWidth * 5 / 8
-heart4.y = display.contentHeight * 1 / 13
-
-character = display.newImageRect("Images/Mermaid.png", 100, 150)
-character.x = display.contentWidth * 2.2/ 8
-character.y = display.contentHeight  * 4/ 8
-character.width = 700
-character.height = 700
---timer.performWithDelay( 2000, character ) 
-
-character2 = display.newImageRect("Images/Dog.png", 100, 150)
-character2.x = display.contentWidth * 6.7/ 8
-character2.y = display.contentHeight  * 6/ 8
-character2.width = 300
-character2.height = 300
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -160,6 +130,7 @@ end
 local function DisplayAnswers( )
 
     local answerPosition = math.random(1,4)
+
     answerTextObject.text = tostring( answer )
     wrongAnswer1TextObject.text = tostring( wrongAnswer1 )
     wrongAnswer2TextObject.text = tostring( wrongAnswer2 )
@@ -238,48 +209,61 @@ end
 
 local function RestartScene()
 
-    alreadyClickedAnswer = false
+ 
     correct.isVisible = false
     incorrect.isVisible = false
-
-    --livesText.text = "Number of lives = " .. tostring(lives)
-    --numberCorrectText.text = "Number correct = " .. tostring(numberCorrect)
 
     -- if they have 0 lives, go to the You Lose screen
     if (lives == 0) then
         composer.gotoScene("you_lose")
-        character.isVisible = false
-        character2.isVisible = false
-        heart1.isVisible = false
-        heart2.isVisible = false
-        heart3.isVisible = false
-        heart4.isVisible = false
-    else 
 
+    elseif (numberCorrect == 5) then
+        composer.gotoScene("you_win")
+    else
         DisplayAddEquation()
         DetermineAnswers()
         DisplayAnswers()
     end
+end
 
-    if (numberCorrect == 5) then
-        composer.gotoScene("you_win")
-        character.isVisible = false
-        character2.isVisible = false
+-- function that operates update hearts
+local function UpdateHearts()
+
+    -- Cancel the timer remove the third heart by making it invisible
+    if (lives == 4) then
+        heart1.isVisible = true
+        heart2.isVisible = true 
+        heart3.isVisible = true
+        heart4.isVisible = true
+    elseif (lives == 3) then
+        heart1.isVisible = false
+        heart2.isVisible = true
+        heart3.isVisible = true
+        heart4.isVisible = true
+    elseif (lives == 2) then
+        heart1.isVisible = false
+        heart2.isVisible = false
+        heart3.isVisible = true
+        heart4.isVisible = true
+    elseif (lives == 1) then
         heart1.isVisible = false
         heart2.isVisible = false
         heart3.isVisible = false
-        heart4.isVisible = false
+        heart4.isVisible = true
+
     end
 end
 
 -- Functions that checks if the buttons have been clicked.
 local function TouchListenerAnswer(touch)
-    -- get the user answer from the text object that was clicked on
-    local userAnswer = answerTextObject.text
 
-    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+    
 
-        alreadyClickedAnswer = true
+    if (touch.phase == "ended") then
+
+        -- get the user answer from the text object that was clicked on
+        userAnswer = answerTextObject.text
+        
 
         -- if the user gets the answer right, display Correct and call RestartSceneRight
         if (answer == tonumber(userAnswer)) then     
@@ -297,17 +281,20 @@ end
 
 local function TouchListenerWrongAnswer1(touch)
     -- get the user answer from the text object that was clicked on
-    local userAnswer = wrongAnswer1TextObject.text
+    userAnswer = wrongAnswer1TextObject.text
 
-    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+    if (touch.phase == "ended") then
 
-        alreadyClickedAnswer = true
+     
 
         if (answer ~= tonumber(userAnswer)) then
             -- decrease a life
             lives = lives - 1
+            -- call update hearts
+            UpdateHearts()
             -- display wrong text
             incorrect.isVisible = true
+
             --play wrong sound
             incorrectSoundChannel = audio.play(incorrectSound)
             -- call RestartScene after 1 second
@@ -319,17 +306,20 @@ end
 
 local function TouchListenerWrongAnswer2(touch)
     -- get the user answer from the text object that was clicked on
-    local userAnswer = wrongAnswer2TextObject.text
+    userAnswer = wrongAnswer2TextObject.text
 
       
-        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+        if (touch.phase == "ended")  then
 
-            alreadyClickedAnswer = true
+          
 
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
                 lives = lives - 1
+                -- call update hearts
+                UpdateHearts()
+
                 -- displays wrong text
                 incorrect.isVisible = true
                 --play wrong sound
@@ -343,17 +333,20 @@ end
 
 local function TouchListenerWrongAnswer3(touch)
     -- get the user answer from the text object that was clicked on
-    local userAnswer = wrongAnswer3TextObject.text
+    userAnswer = wrongAnswer3TextObject.text
 
       
-        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+        if (touch.phase == "ended")  then
 
-            alreadyClickedAnswer = true
+          
 
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
                 lives = lives - 1
+                -- call update hearts
+                UpdateHearts()
+
                 -- displays wrong text
                 incorrect.isVisible = true
                 --play wrong sound
@@ -404,6 +397,42 @@ function scene:create( event )
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
 
+    -------------------------------------------------
+    -- Creat lives and characters
+    ------------------------------------------------
+    --create the lives to display on the screen
+    heart1 = display.newImageRect("Images/heart.png", 100, 100)
+    heart1.x = display.contentWidth * 7.4 / 8
+    heart1.y = display.contentHeight * 1 / 13
+
+    --create the lives to display on the screen
+    heart2 = display.newImageRect("Images/heart.png", 100, 100)
+    heart2.x = display.contentWidth * 6.6 / 8
+    heart2.y = display.contentHeight * 1 / 13
+
+    --create the lives to display on the screen
+    heart3 = display.newImageRect("Images/heart.png", 100, 100)
+    heart3.x = display.contentWidth * 5.8 / 8
+    heart3.y = display.contentHeight * 1 / 13
+
+    --create the lives to display on the screenF
+    heart4 = display.newImageRect("Images/heart.png", 100, 100)
+    heart4.x = display.contentWidth * 5 / 8
+    heart4.y = display.contentHeight * 1 / 13
+
+    character = display.newImageRect("Images/Mermaid.png", 100, 150)
+    character.x = display.contentWidth * 2.2/ 8
+    character.y = display.contentHeight  * 4/ 8
+    character.width = 700
+    character.height = 700
+    --timer.performWithDelay( 2000, character ) 
+
+    character2 = display.newImageRect("Images/Dog.png", 100, 150)
+    character2.x = display.contentWidth * 6.7/ 8
+    character2.y = display.contentHeight  * 6/ 8
+    character2.width = 300
+    character2.height = 300
+
     -- create the text object that will hold the add equation. Make it empty for now.
     addEquationTextObject = display.newText( "", display.contentWidth*5/10, display.contentHeight*2/10, nil, 90 )
 
@@ -429,17 +458,19 @@ function scene:create( event )
     incorrect:setTextColor(255/255, 0/255, 0/255)
     incorrect.isVisible = false
 
-    -- create the text object that will say Out of Time, set the colour and then hide it
-    outOfTimeText = display.newText("Out of Time!", display.contentWidth*2/5, display.contentHeight*1/3, nil, 50)
-    outOfTimeText:setTextColor(100/255, 47/255, 210/255)
-    outOfTimeText.isVisible = false
-
     -- display the level text of time text and set the colour
     level1Text = display.newText("LEVEL 1", display.contentWidth*2/12, display.contentHeight*11/12, nil, 50)
     level1Text:setTextColor(0, 0, 0)
     
     -- Insert objects into scene group
-    sceneGroup:insert( bkg )  
+    sceneGroup:insert( bkg ) 
+    -- add hearts and characters 
+    sceneGroup:insert( heart1 )
+    sceneGroup:insert( heart2 )
+    sceneGroup:insert( heart3 )
+    sceneGroup:insert( heart4 )
+    sceneGroup:insert( character )
+    sceneGroup:insert( character2 )
     sceneGroup:insert( livesText )
     sceneGroup:insert( addEquationTextObject )
     sceneGroup:insert( answerTextObject )
@@ -471,7 +502,7 @@ function scene:show( event )
     elseif ( phase == "did" ) then
 
         -- initialize the number of lives and number correct 
-        lives = 2
+        lives = 4
         numberCorrect = 0
 
         -- listeners to each of the answer text objects
