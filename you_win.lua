@@ -28,7 +28,7 @@ local scene = composer.newScene( sceneName )
 -- SOUNDS
 ---------------------------------------------------------------------------------------
 -- win sound 
-local winSound = audio.loadSound("Sounds/Cheer.m4a" ) 
+local winSound = audio.loadSound("Sounds/you_win.mp3" ) 
 -- Setting a variable to an mp3 file
 local winSoundChannel
 
@@ -138,6 +138,8 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 end
+
+audio.stop()
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS

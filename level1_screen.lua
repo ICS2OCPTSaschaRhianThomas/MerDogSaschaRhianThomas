@@ -103,12 +103,12 @@ local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" )
 local bkgMusicChannel
 
 -- corect sound
-local correctSound = audio.loadSound("Sounds/CorrectAnswer.mp3" ) 
+local correctSound = audio.loadSound("Sounds/Correct.mp3" ) 
 -- Setting a variable to an mp3 file
 local correctSoundChannel
 
 -- incorect sound
-local incorrectSound = audio.loadSound("Sounds/WrongBuzzer.mp3" ) 
+local incorrectSound = audio.loadSound("Sounds/Incorrect.mp3" ) 
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
 
@@ -556,6 +556,8 @@ function scene:destroy( event )
     -- Example: remove display objects, save state, etc.
 end
 
+
+audio.stop()
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
 -----------------------------------------------------------------------------------------

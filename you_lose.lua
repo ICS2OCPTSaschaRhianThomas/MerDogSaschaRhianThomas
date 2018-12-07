@@ -30,7 +30,7 @@ local scene = composer.newScene( sceneName )
 -- SOUNDS
 -----------------------------------------------------------------------------------------
 -- lose game sound
-local loseSound = audio.loadSound("Sounds/Kids Booing.mp3" ) 
+local loseSound = audio.loadSound("Sounds/you_lose.mp3" ) 
 -- Setting a variable to an mp3 file
 local loseSoundChannel
 
