@@ -101,6 +101,11 @@ function scene:create( event )
 
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
+    sceneGroup:insert( sascha )
+    sceneGroup:insert( thomas )
+    sceneGroup:insert( rhian )
+    sceneGroup:insert( kaitlyn )
+    sceneGroup:insert( phoebe )
 
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
