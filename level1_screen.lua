@@ -12,6 +12,16 @@
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
 
+----------------------------------------------------------------------------------------
+    -- SOUNDS
+    ----------------------------------------------------------------------------------------
+    -- play sound effect
+    -- Logo sound
+    local bkgMusic = audio.loadSound("Sounds/Level1.mp3" ) 
+    -- Setting a variable to an mp3 file
+    local bkgMusicChannel = audio.play(Level1, {loops= 10})
+
+    ----------------------------------------------------------------------------------------
 
 -- Use Composer Library
 local composer = require( "composer" )
@@ -37,6 +47,8 @@ local scene = composer.newScene( sceneName )
 
 -- The local variables for this scene
 local bkg
+local bkgMusic
+local bkgMusicChannel
 
 -- determine the range for the numbers to add
 local MIN_NUM = 1
@@ -554,10 +566,12 @@ function scene:destroy( event )
     -- Called prior to the removal of scene's view ("sceneGroup").
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
+
+    audio.stop()
+
 end
 
 
-audio.stop()
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
 -----------------------------------------------------------------------------------------

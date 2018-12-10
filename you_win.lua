@@ -139,7 +139,6 @@ function scene:destroy( event )
     -- Example: remove display objects, save state, etc.
 end
 
-audio.stop()
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
