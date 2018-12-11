@@ -6,7 +6,13 @@
 -- Date: Month Day, Year
 -- Description: This is the credits page, displaying a back button to the main menu.
 -----------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------
+-- SOUND
+-----------------------------------------------------------------------------------------
+-- bkg game music
+local creditsSound = audio.loadSound("Sounds/Credits.mp3" ) 
+-- Setting a variable to an mp3 file
+local creditsChannel
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -153,6 +159,9 @@ function scene:show( event )
 
     local phase = event.phase
 
+            creditsSoundChannel = audio.play(creditsSound)
+
+
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
@@ -179,6 +188,8 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     local phase = event.phase
+
+    audio.stop()
 
     -----------------------------------------------------------------------------------------
 
