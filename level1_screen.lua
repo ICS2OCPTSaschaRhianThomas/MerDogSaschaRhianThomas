@@ -15,12 +15,7 @@
 ----------------------------------------------------------------------------------------
     -- SOUNDS
     ----------------------------------------------------------------------------------------
-    -- play sound effect
-    -- Logo sound
-    local bkgMusic = audio.loadSound("Sounds/Level1.mp3" ) 
-    -- Setting a variable to an mp3 file
-    local bkgMusicChannel = audio.play(Level1, {loops= 10})
-
+ 
     ----------------------------------------------------------------------------------------
 
 -- Use Composer Library
@@ -501,7 +496,6 @@ function scene:show( event )
     local phase = event.phase
 
     -- play bkg music
-    bkgMusicChannel = audio.play(bkgMusic)
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
@@ -565,7 +559,7 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 
-    audio.stop()
+    audio.stop(bkgMusic)
 
 end
 
