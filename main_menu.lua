@@ -226,7 +226,7 @@ function scene:show( event )
     -- Insert code here to make the scene come alive.
     -- Example: start timers, begin animation, play audio, etc.
     -- start the bkg music
-    bkgMusicChannel = audio.play(bkgMusic)
+  
 
     elseif ( phase == "did" ) then       
         
