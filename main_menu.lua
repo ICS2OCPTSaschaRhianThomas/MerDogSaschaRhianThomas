@@ -26,6 +26,15 @@ sceneName = "main_menu"
 -- Creating Scene Object
 local scene = composer.newScene( sceneName )
 
+----------------------------------------------------------------------------------------
+-- SOUNDS
+----------------------------------------------------------------------------------------
+-- play sound effect
+-- Logo sound
+local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
+-- Setting a variable to an mp3 file
+local bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
+
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -37,7 +46,8 @@ local creditsButton
 local instructionsButton
 local muteButton
 local muteTransition
-local soundOn = 1
+local soundOn = true
+
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -62,14 +72,17 @@ local function InstructionsScreenTransition( )
 end 
 
 local function MuteButton()
-    if (soundOn) then
+    if (soundOn == true) then
         audio.setVolume(0)
-        soundOn = 0
+        soundOn = false
+        muteButton.defaultFile = "Images/MutePressed.png"
+        muteButton.overFile = "Images/MutePressed.png"
     else
         audio.setVolume(1)
-        soundOn = 1
+        soundOn = true
     end
 end
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -97,14 +110,7 @@ function scene:create( event )
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
 
-    ----------------------------------------------------------------------------------------
-    -- SOUNDS
-    ----------------------------------------------------------------------------------------
-    -- play sound effect
-    -- Logo sound
-    local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
-    -- Setting a variable to an mp3 file
-    local bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
+    
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
     -----------------------------------------------------------------------------------------   
@@ -184,6 +190,7 @@ function scene:create( event )
             onRelease = MuteButton
         } )
       ------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 
     -- Associating button widgets with this scene
     sceneGroup:insert( playButton )
@@ -192,6 +199,7 @@ function scene:create( event )
     sceneGroup:insert( muteButton )
 
 end -- function scene:create( event )   
+
 
 
 
@@ -218,7 +226,7 @@ function scene:show( event )
     -- Insert code here to make the scene come alive.
     -- Example: start timers, begin animation, play audio, etc.
     -- start the bkg music
-    bkgMusicChannel = audio.play(bkgMusic)
+  
 
     elseif ( phase == "did" ) then       
         

@@ -3,6 +3,13 @@
 -- Date: 11/14/2018
 -- Description: This is the instructions page, displaying a back button to the main menu.
 -----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+-- SOUND
+-----------------------------------------------------------------------------------------
+-- bkg game music
+local instructionSound = audio.loadSound("Sounds/Instruction.mp3" ) 
+-- Setting a variable to an mp3 file
+local instructionChannel
 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
@@ -19,6 +26,10 @@ sceneName = "instructions.lua"
 
 -- Creating Scene Object
 scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
+
+-----------------------------------------------------------------------------------------
+-- LOCAL VARIABLES
+-----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -106,6 +117,9 @@ function scene:show( event )
 
     local phase = event.phase
 
+        instructionSoundChannel = audio.play(instructionSound)
+
+
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
@@ -132,6 +146,8 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     local phase = event.phase
+
+    audio.stop()
 
     -----------------------------------------------------------------------------------------
 
