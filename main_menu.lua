@@ -33,7 +33,7 @@ local scene = composer.newScene( sceneName )
 -- Logo sound
 local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
 -- Setting a variable to an mp3 file
-local bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
+local bkgMusicChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -229,7 +229,7 @@ function scene:show( event )
   
 
     elseif ( phase == "did" ) then       
-        
+        bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
 
     end
 
