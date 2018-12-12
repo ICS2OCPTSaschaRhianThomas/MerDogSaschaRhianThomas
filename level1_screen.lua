@@ -15,7 +15,8 @@
 ----------------------------------------------------------------------------------------
     -- SOUNDS
     ----------------------------------------------------------------------------------------
- 
+ local level1Sound = audio.loadSound( "Sounds/Level1.mp3" )
+local level1SoundChannel
     ----------------------------------------------------------------------------------------
 
 -- Use Composer Library
@@ -42,8 +43,7 @@ local scene = composer.newScene( sceneName )
 
 -- The local variables for this scene
 local bkg
-local bkgMusic
-local bkgMusicChannel
+
 
 -- determine the range for the numbers to add
 local MIN_NUM = 1
@@ -105,9 +105,9 @@ local alreadyClickedAnswer = false
 -- SOUND
 -----------------------------------------------------------------------------------------
 -- bkg game music
-local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
+local level1Sound = audio.loadSound("Sounds/Level1.mp3" ) 
 -- Setting a variable to an mp3 file
-local bkgMusicChannel
+local level1Channel
 
 -- corect sound
 local correctSound = audio.loadSound("Sounds/Correct.mp3" ) 
@@ -502,6 +502,8 @@ function scene:show( event )
     local phase = event.phase
 
     -- play bkg music
+    level1SoundChannel = audio.play(level1Sound)
+
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
@@ -536,6 +538,8 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
+
+        audio.stop()
 
 
         -- Called when the scene is on screen (but is about to go off screen).

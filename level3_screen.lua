@@ -1,23 +1,17 @@
 
 -----------------------------------------------------------------------------------------
--- level2_screen.lua
--- level2_screen.lua
+-- level3_screen.lua
+-- level3_screen.lua
 -- Created by: Gil Robern
 -- Modified by: Your Name
 -- Date: Month Day, Year
--- Description: This is the level 2 screen of the game.
+-- Description: This is the level 3 screen of the game.
 -----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
 
-----------------------------------------------------------------------------------------
-    -- SOUNDS
-    ----------------------------------------------------------------------------------------
- local level1Sound = audio.loadSound( "Sounds/Level1.mp3" )
-local level1SoundChannel
-    ----------------------------------------------------------------------------------------
 
 -- Use Composer Library
 local composer = require( "composer" )
@@ -43,7 +37,6 @@ local scene = composer.newScene( sceneName )
 
 -- The local variables for this scene
 local bkg
-
 
 -- determine the range for the numbers to add
 local MIN_NUM = 1
@@ -105,19 +98,21 @@ local alreadyClickedAnswer = false
 -- SOUND
 -----------------------------------------------------------------------------------------
 -- bkg game music
-local level1Sound = audio.loadSound("Sounds/Level1.mp3" ) 
+local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
 -- Setting a variable to an mp3 file
-local level1Channel
+local bkgMusicChannel
 
 -- corect sound
-local correctSound = audio.loadSound("Sounds/Correct.mp3" ) 
+local correctSound = audio.loadSound("Sounds/CorrectAnswer.mp3" ) 
 -- Setting a variable to an mp3 file
 local correctSoundChannel
 
 -- incorect sound
-local incorrectSound = audio.loadSound("Sounds/Incorrect.mp3" ) 
+local incorrectSound = audio.loadSound("Sounds/WrongBuzzer.mp3" ) 
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
+
+
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -126,7 +121,7 @@ local incorrectSoundChannel
 local function DetermineAnswers()
     -- calculate the correct answer as well as the wrong answers
     answer = firstNumber + secondNumber
-    wrongAnswer1 = answer - math.random(1,3)
+    wrongAnswer1 = answer + math.random(1,3)
     wrongAnswer2 = answer + math.random(4,8)
     wrongAnswer3 = answer + math.random(9,13)
 end
@@ -496,8 +491,7 @@ function scene:show( event )
     local phase = event.phase
 
     -- play bkg music
-    level1SoundChannel = audio.play(level1Sound)
-
+    bkgMusicChannel = audio.play(bkgMusic)
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
@@ -533,8 +527,6 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
 
-        audio.stop()
-
 
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
@@ -562,11 +554,7 @@ function scene:destroy( event )
     -- Called prior to the removal of scene's view ("sceneGroup").
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
-
-    audio.stop(bkgMusic)
-
 end
-
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS

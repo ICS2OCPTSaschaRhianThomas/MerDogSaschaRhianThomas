@@ -3,6 +3,13 @@
 -- Date: 11/14/2018
 -- Description: This is the instructions page, displaying a back button to the main menu.
 -----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+-- SOUND
+-----------------------------------------------------------------------------------------
+-- bkg game music
+local instructionSound = audio.loadSound("Sounds/Instruction.mp3" ) 
+-- Setting a variable to an mp3 file
+local instructionChannel
 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
@@ -23,6 +30,10 @@ scene = composer.newScene( sceneName ) -- This function doesn't accept a string,
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
+-- LOCAL VARIABLES
+-----------------------------------------------------------------------------------------
 local bkg_image
 local backButton
 
@@ -33,6 +44,7 @@ local backButton
 -- Creating Transitioning Function back to main menu
 local function BackTransition( )
     composer.gotoScene( "main_menu", {effect = "zoomOutInFadeRotate", time = 500})
+
 end
 
 
@@ -106,6 +118,9 @@ function scene:show( event )
 
     local phase = event.phase
 
+        instructionSoundChannel = audio.play(instructionSound)
+
+
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
@@ -132,6 +147,8 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     local phase = event.phase
+
+    audio.stop()
 
     -----------------------------------------------------------------------------------------
 
