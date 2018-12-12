@@ -119,6 +119,12 @@ local incorrectSound = audio.loadSound("Sounds/Incorrect.mp3" )
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
 
+-- play sound effect
+-- Logo sound
+local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
+-- Setting a variable to an mp3 file
+local bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
