@@ -1,11 +1,11 @@
 
 -----------------------------------------------------------------------------------------
--- level1_screen.lua
--- level1_screen.lua
+-- level3_screen.lua
+-- level3_screen.lua
 -- Created by: Gil Robern
 -- Modified by: Your Name
 -- Date: Month Day, Year
--- Description: This is the level 1 screen of the game.
+-- Description: This is the level 3 screen of the game.
 -----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
@@ -121,6 +121,7 @@ local incorrectSoundChannel
 local function DetermineAnswers()
     -- calculate the correct answer as well as the wrong answers
     answer = firstNumber + secondNumber
+    answer = firstNumber - secondNumber
     wrongAnswer1 = answer + math.random(1,3)
     wrongAnswer2 = answer + math.random(4,8)
     wrongAnswer3 = answer + math.random(9,13)
