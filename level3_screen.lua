@@ -51,6 +51,7 @@ local userAnswer
 local answer 
 local wrongAnswer1
 local wrongAnswer2
+local temp
 
 -- the text object that will hold the addition equation
 local addEquationTextObject 
@@ -120,7 +121,6 @@ local incorrectSoundChannel
 
 local function DetermineAnswers()
     -- calculate the correct answer as well as the wrong answers
-    answer = firstNumber + secondNumber
     answer = firstNumber - secondNumber
     wrongAnswer1 = answer + math.random(1,3)
     wrongAnswer2 = answer + math.random(4,8)
@@ -136,6 +136,12 @@ local function DisplayAnswers( )
     wrongAnswer1TextObject.text = tostring( wrongAnswer1 )
     wrongAnswer2TextObject.text = tostring( wrongAnswer2 )
     wrongAnswer3TextObject.text = tostring( wrongAnswer3 )
+
+    if firstNumber < secondNumber then
+        temp = firstNumber
+        firstnumber = secondNumber 
+        secondNumber = temp
+    end 
 
     if (answerPosition == 1) then                
         
@@ -170,6 +176,7 @@ local function DisplayAnswers( )
 
 end
 
+
 -- make the correct object visible
 local function HideCorrect()
     correctObject.isVisible = false
@@ -203,6 +210,28 @@ local function DisplayAddEquation()
 
     -- create the addition equation to display
     addEquationString = firstNumber .. " + " .. secondNumber .. " = " 
+
+    -- create the addition equation to display
+    addEquationString = firstNumber .. " - " .. secondNumber .. " = "
+
+    -- displays text on text object
+    addEquationTextObject.text = addEquationString
+end
+
+-- The function that displays the equation and determines the answer and the wrong answers
+local function DisplayAddEquation()
+    -- local variables to this function
+    local addEquationString
+
+    -- choose the numbers to add randomly
+    firstNumber = math.random(MIN_NUM, MAX_NUM)
+    secondNumber = math.random(MIN_NUM, MAX_NUM)
+
+    -- create the addition equation to display
+    addEquationString = firstNumber .. " + " .. secondNumber .. " = " 
+
+     -- create the addition equation to display
+    addEquationString = firstNumber .. " - " .. secondNumber .. " = "
 
     -- displays text on text object
     addEquationTextObject.text = addEquationString
@@ -460,7 +489,7 @@ function scene:create( event )
     incorrect.isVisible = false
 
     -- display the level text of time text and set the colour
-    level1Text = display.newText("LEVEL 1", display.contentWidth*2/12, display.contentHeight*11/12, nil, 50)
+    level1Text = display.newText("LEVEL 3", display.contentWidth*2/12, display.contentHeight*11/12, nil, 50)
     level1Text:setTextColor(0, 0, 0)
     
     -- Insert objects into scene group
