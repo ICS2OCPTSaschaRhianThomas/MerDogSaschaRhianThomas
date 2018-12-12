@@ -1,11 +1,11 @@
 
 -----------------------------------------------------------------------------------------
--- level1_screen.lua
--- level1_screen.lua
+-- level3_screen.lua
+-- level3_screen.lua
 -- Created by: Gil Robern
 -- Modified by: Your Name
 -- Date: Month Day, Year
--- Description: This is the level 1 screen of the game.
+-- Description: This is the level 3 screen of the game.
 -----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
