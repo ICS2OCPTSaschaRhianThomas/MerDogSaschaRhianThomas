@@ -147,7 +147,7 @@ function scene:show( event )
 
 
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay ( 2700, gotoMainMenu)          
+        timer.performWithDelay ( 1500, gotoMainMenu)          
         
     end
 
