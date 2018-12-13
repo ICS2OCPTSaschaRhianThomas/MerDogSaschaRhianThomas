@@ -1,110 +1,70 @@
--- instructions.lua
--- Created by: Sascha Motz
--- Date: 11/14/2018
--- Description: This is the instructions page, displaying a back button to the main menu.
 -----------------------------------------------------------------------------------------
+-- you_win.lua
+-- SceneTemplate.lua
+-- Scene Template (Composer API)
+--
 -----------------------------------------------------------------------------------------
--- SOUND
------------------------------------------------------------------------------------------
--- bkg game music
-local instructionSound = audio.loadSound("Sounds/Instruction.mp3" ) 
--- Setting a variable to an mp3 file
-local instructionChannel
 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
 
--- Use Composer Libraries
+-- Calling Composer Library
 local composer = require( "composer" )
+
 local widget = require( "widget" )
 
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "instructions.lua"
+sceneName = "you_win"
+
+-----------------------------------------------------------------------------------------
 
 -- Creating Scene Object
-scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
+local scene = composer.newScene( sceneName )
+
+----------------------------------------------------------------------------------------
+-- SOUNDS
+---------------------------------------------------------------------------------------
+-- win sound 
+local winSound = audio.loadSound("Sounds/you_win.mp3" ) 
+-- Setting a variable to an mp3 file
+local winSoundChannel
 
 -----------------------------------------------------------------------------------------
--- LOCAL VARIABLES
+-- FORWARD REFERENCES
 -----------------------------------------------------------------------------------------
 
------------------------------------------------------------------------------------------
--- LOCAL VARIABLES
------------------------------------------------------------------------------------------
-local bkg_image
-local backButton
+-- local variables for the scene
+local bkg
 
+----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
-
--- Creating Transitioning Function back to main menu
-local function BackTransition( )
-    composer.gotoScene( "main_menu", {effect = "zoomOutInFadeRotate", time = 500})
-
-end
-
-
------------------------------------------------------------------------------------------
--- GLOBAL SCENE FUNCTIONS
------------------------------------------------------------------------------------------
-
+--------------------------------------------------------------------------------------
 -- The function called when the screen doesn't exist
 function scene:create( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -----------------------------------------------------------------------------------------
-    -- BACKGROUND AND DISPLAY OBJECTS
-    -----------------------------------------------------------------------------------------
-
-    -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImageRect("Images/Instructions.png", display.contentWidth, display.contentHeight)
-    bkg_image.x = display.contentCenterX
-    bkg_image.y = display.contentCenterY
-    bkg_image.width = display.contentWidth
-    bkg_image.height = display.contentHeight
-
+    -- Display background
+    bkg = display.newImage("Images/YouWin.png")
+    bkg.x = display.contentCenterX
+    bkg.y = display.contentCenterY
+    bkg.width = display.contentWidth
+    bkg.height = display.contentHeight
+   
     -- Associating display objects with this scene 
-    sceneGroup:insert( bkg_image )
+    sceneGroup:insert( bkg )
+  
+end    
 
-    -- Send the background image to the back layer so all other objects can be on top
-    bkg_image:toBack()
-
-    -----------------------------------------------------------------------------------------
-    -- BUTTON WIDGETS
-    -----------------------------------------------------------------------------------------
-
-    -- Creating Back Button
-    backButton = widget.newButton( 
-    {
-        -- Setting Position
-        x = display.contentWidth*.7/8,
-        y = display.contentHeight*14/16,
-
-        -- Setting Dimensions
-         width = 170,
-         height = 100,
-
-        -- Setting Visual Properties
-        defaultFile = "Images/BackButtonUnpressedSaschaM.png",
-        overFile = "Images/BackButtonPressedSaschaM.png",
-
-        -- Setting Functional Properties
-        onRelease = BackTransition
-
-    } )
-
-    -----------------------------------------------------------------------------------------
-
-    -- Associating Buttons with this scene
-    sceneGroup:insert( backButton )
-    
-end --function scene:create( event )
+-----------------------------------------------------------------------------------------
+-- GLOBAL SCENE FUNCTIONS
+-----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
 
@@ -118,9 +78,6 @@ function scene:show( event )
 
     local phase = event.phase
 
-        instructionSoundChannel = audio.play(instructionSound)
-
-
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
@@ -129,12 +86,15 @@ function scene:show( event )
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
+
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        --win sound
+        winSoundChannel = audio.play(winSound)
     end
 
-end -- function scene:show( event )
+end
 
 -----------------------------------------------------------------------------------------
 
@@ -148,14 +108,13 @@ function scene:hide( event )
 
     local phase = event.phase
 
-    audio.stop()
-
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
+        audio.stop()
 
     -----------------------------------------------------------------------------------------
 
@@ -163,7 +122,7 @@ function scene:hide( event )
         -- Called immediately after scene goes off screen.
     end
 
-end --function scene:hide( event )
+end
 
 -----------------------------------------------------------------------------------------
 
@@ -179,8 +138,8 @@ function scene:destroy( event )
     -- Called prior to the removal of scene's view ("sceneGroup").
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
+end
 
-end --function scene:destroy( event )
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
@@ -195,5 +154,3 @@ scene:addEventListener( "destroy", scene )
 -----------------------------------------------------------------------------------------
 
 return scene
-
-

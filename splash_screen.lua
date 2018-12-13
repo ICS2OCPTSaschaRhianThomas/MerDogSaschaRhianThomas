@@ -39,7 +39,7 @@ local directionLogo = 1
 
 
 -- variable for speed of the logo
-local scrollSpeedLogo = 9
+local scrollSpeedLogo = 10
 
 
 -----------------------------------------------------------------------------------------
@@ -142,11 +142,12 @@ function scene:show( event )
 
 
         --make logo spin
-        transition.to( logo, { rotation = logo.rotation-1440, time=17000, onComplete=spinImage } )
+        transition.to( logo, { rotation = logo.rotation-1940, time=13000, onComplete=spinImage } )
+        transition.to( logo, {x= 9000, time= 13000 })
 
 
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay ( 3000, gotoMainMenu)          
+        timer.performWithDelay ( 2700, gotoMainMenu)          
         
     end
 
