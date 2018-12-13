@@ -130,7 +130,9 @@ function scene:create( event )
             height = 150,
 
             -- When the button is released, call the Level1 screen transition function
-            onRelease = Level1ScreenTransition          
+            onRelease = Level1ScreenTransition
+            --onRelease = audio.stop(bkgMusic) 
+
         } )
 
     -----------------------------------------------------------------------------------------
