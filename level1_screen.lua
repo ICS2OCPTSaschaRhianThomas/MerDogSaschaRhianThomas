@@ -16,8 +16,8 @@
     -- SOUNDS
     ----------------------------------------------------------------------------------------
  local level1Sound = audio.loadSound( "Sounds/Level1.mp3" )
-local level1SoundChannel
-    ----------------------------------------------------------------------------------------
+ local level1SoundChannel
+----------------------------------------------------------------------------------------
 
 -- Use Composer Library
 local composer = require( "composer" )

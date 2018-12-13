@@ -1,10 +1,5 @@
-
------------------------------------------------------------------------------------------
 -- level3_screen.lua
--- level3_screen.lua
--- Created by: Gil Robern
--- Modified by: Your Name
--- Date: Month Day, Year
+-- Modified by: Sascha & Thomas & Rhian
 -- Description: This is the level 3 screen of the game.
 -----------------------------------------------------------------------------------------
 
@@ -12,6 +7,12 @@
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
 
+----------------------------------------------------------------------------------------
+    -- SOUNDS
+----------------------------------------------------------------------------------------
+ local level3Sound = audio.loadSound( "Sounds/Level3.mp3" )
+ local level3SoundChannel
+----------------------------------------------------------------------------------------
 
 -- Use Composer Library
 local composer = require( "composer" )
@@ -62,17 +63,10 @@ local wrongAnswer1TextObject
 local wrongAnswer2TextObject
 local wrongAnswer3TextObject
 
--- displays the number correct that the user has
---local numberCorrectText 
-
--- displays the number incorrect that the user has
---local numberIncorrectText 
-
 -- displays the lives
 local livesText 
 local lives = 4
 local numberCorrect = 0
-
 
 local heart1
 local heart2
@@ -99,21 +93,19 @@ local alreadyClickedAnswer = false
 -- SOUND
 -----------------------------------------------------------------------------------------
 -- bkg game music
-local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
+local level3Sound = audio.loadSound("Sounds/Level3.mp3" ) 
 -- Setting a variable to an mp3 file
-local bkgMusicChannel
+local level3Channel
 
 -- corect sound
-local correctSound = audio.loadSound("Sounds/CorrectAnswer.mp3" ) 
+local correctSound = audio.loadSound("Sounds/Correct.mp3" ) 
 -- Setting a variable to an mp3 file
 local correctSoundChannel
 
 -- incorect sound
-local incorrectSound = audio.loadSound("Sounds/WrongBuzzer.mp3" ) 
+local incorrectSound = audio.loadSound("Sounds/Incorrect.mp3" ) 
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
-
-
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -123,6 +115,8 @@ local function DetermineAnswers()
     -- calculate the correct answer as well as the wrong answers
     answer = firstNumber - secondNumber
     wrongAnswer1 = answer + math.random(1,3)
+    answer = firstNumber + secondNumber
+    wrongAnswer1 = answer - math.random(1,3)
     wrongAnswer2 = answer + math.random(4,8)
     wrongAnswer3 = answer + math.random(9,13)
 end
@@ -165,7 +159,6 @@ local function DisplayAnswers( )
         wrongAnswer2TextObject.x = display.contentWidth*.55
         wrongAnswer3TextObject.x = display.contentWidth*.45 
 
-
     else
        
         answerTextObject.x = display.contentWidth*.35        
@@ -173,7 +166,6 @@ local function DisplayAnswers( )
         wrongAnswer2TextObject.x = display.contentWidth*.55
         wrongAnswer3TextObject.x = display.contentWidth*.65 
     end
-
 end
 
 
@@ -239,7 +231,6 @@ end
 
 local function RestartScene()
 
- 
     correct.isVisible = false
     incorrect.isVisible = false
 
@@ -280,21 +271,17 @@ local function UpdateHearts()
         heart2.isVisible = false
         heart3.isVisible = false
         heart4.isVisible = true
-
     end
 end
 
 -- Functions that checks if the buttons have been clicked.
 local function TouchListenerAnswer(touch)
 
-    
-
     if (touch.phase == "ended") then
 
         -- get the user answer from the text object that was clicked on
         userAnswer = answerTextObject.text
         
-
         -- if the user gets the answer right, display Correct and call RestartSceneRight
         if (answer == tonumber(userAnswer)) then     
             correct.isVisible = true
@@ -305,7 +292,6 @@ local function TouchListenerAnswer(touch)
             -- call RestartScene after 1 second
             timer.performWithDelay( 1000, RestartScene )
         end        
-
     end
 end
 
@@ -314,8 +300,6 @@ local function TouchListenerWrongAnswer1(touch)
     userAnswer = wrongAnswer1TextObject.text
 
     if (touch.phase == "ended") then
-
-     
 
         if (answer ~= tonumber(userAnswer)) then
             -- decrease a life
@@ -521,7 +505,8 @@ function scene:show( event )
     local phase = event.phase
 
     -- play bkg music
-    bkgMusicChannel = audio.play(bkgMusic)
+    level3SoundChannel = audio.play(level3Sound)
+
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
@@ -557,6 +542,8 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
 
+        audio.stop()
+
 
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
@@ -584,7 +571,11 @@ function scene:destroy( event )
     -- Called prior to the removal of scene's view ("sceneGroup").
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
+
+    audio.stop(bkgMusic)
+
 end
+
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS

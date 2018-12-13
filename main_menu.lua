@@ -1,9 +1,3 @@
--- main_menu.lua
--- Created by: Sascha Motz
--- Date: November 12, 2018
--- Description: This is the main menu, displaying the credits, instructions & play buttons.
------------------------------------------------------------------------------------------
-
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -33,7 +27,7 @@ local scene = composer.newScene( sceneName )
 -- Logo sound
 local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
 -- Setting a variable to an mp3 file
-local bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
+local bkgMusicChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -130,7 +124,9 @@ function scene:create( event )
             height = 150,
 
             -- When the button is released, call the Level1 screen transition function
-            onRelease = Level1ScreenTransition          
+            onRelease = Level1ScreenTransition
+            --onRelease = audio.stop(bkgMusic) 
+
         } )
 
     -----------------------------------------------------------------------------------------
@@ -229,7 +225,7 @@ function scene:show( event )
   
 
     elseif ( phase == "did" ) then       
-        
+        bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
 
     end
 

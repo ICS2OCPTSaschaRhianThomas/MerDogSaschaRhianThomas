@@ -62,7 +62,7 @@ rhian.y = display.contentHeight  * 4/ 8
 rhian.width = 200
 rhian.height = 200
 
- local kaitlyn = display.newImageRect("Images/kaitlyn.png", 300, 100)
+ local kaitlyn = display.newImageRect("Images/Kaitlyn.png", 300, 100)
 kaitlyn.x = display.contentWidth * 4.5/ 8
 kaitlyn.y = display.contentHeight  *1.8/ 8
 kaitlyn.width = 200

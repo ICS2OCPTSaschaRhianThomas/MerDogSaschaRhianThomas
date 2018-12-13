@@ -1,10 +1,6 @@
-
------------------------------------------------------------------------------------------
--- level2_screen.lua
 -- level2_screen.lua
 -- Created by: Gil Robern
--- Modified by: Your Name
--- Date: Month Day, Year
+-- Modified by: Rhian & Thomas & Sascha
 -- Description: This is the level 2 screen of the game.
 -----------------------------------------------------------------------------------------
 
@@ -14,10 +10,10 @@
 
 ----------------------------------------------------------------------------------------
     -- SOUNDS
-    ----------------------------------------------------------------------------------------
- local level1Sound = audio.loadSound( "Sounds/Level1.mp3" )
-local level1SoundChannel
-    ----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+ local level2Sound = audio.loadSound( "Sounds/Level2.mp3" )
+ local level2SoundChannel
+----------------------------------------------------------------------------------------
 
 -- Use Composer Library
 local composer = require( "composer" )
@@ -44,7 +40,6 @@ local scene = composer.newScene( sceneName )
 -- The local variables for this scene
 local bkg
 
-
 -- determine the range for the numbers to add
 local MIN_NUM = 1
 local MAX_NUM = 13
@@ -68,17 +63,10 @@ local wrongAnswer1TextObject
 local wrongAnswer2TextObject
 local wrongAnswer3TextObject
 
--- displays the number correct that the user has
---local numberCorrectText 
-
--- displays the number incorrect that the user has
---local numberIncorrectText 
-
 -- displays the lives
 local livesText 
 local lives = 4
 local numberCorrect = 0
-
 
 local heart1
 local heart2
@@ -105,9 +93,9 @@ local alreadyClickedAnswer = false
 -- SOUND
 -----------------------------------------------------------------------------------------
 -- bkg game music
-local level1Sound = audio.loadSound("Sounds/Level1.mp3" ) 
+local level2Sound = audio.loadSound("Sounds/Level2.mp3" ) 
 -- Setting a variable to an mp3 file
-local level1Channel
+local level2Channel
 
 -- corect sound
 local correctSound = audio.loadSound("Sounds/Correct.mp3" ) 
@@ -496,7 +484,7 @@ function scene:show( event )
     local phase = event.phase
 
     -- play bkg music
-    level1SoundChannel = audio.play(level1Sound)
+    level2SoundChannel = audio.play(level2Sound)
 
     -----------------------------------------------------------------------------------------
 
