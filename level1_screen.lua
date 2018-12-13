@@ -237,6 +237,16 @@ local function RestartScene()
     end
 end
 
+local function AlreadyClicked()
+    if (alreadyClickedAnswer = false) then
+
+    end
+
+    if (alreadyClickedAnswer = true) then 
+
+    end
+
+
 -- function that operates update hearts
 local function UpdateHearts()
 
@@ -261,6 +271,13 @@ local function UpdateHearts()
         heart2.isVisible = false
         heart3.isVisible = false
         heart4.isVisible = true
+     elseif (lives == 0) then
+        heart1.isVisible = false
+        heart2.isVisible = false
+        heart3.isVisible = false
+        heart4.isVisible = false
+        LoseScreenTransition( )
+
 
     end
 end
