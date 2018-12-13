@@ -1,6 +1,10 @@
+
+-----------------------------------------------------------------------------------------
+-- level2_screen.lua
 -- level2_screen.lua
 -- Created by: Gil Robern
--- Modified by: Rhian & Thomas & Sascha
+-- Modified by: Your Name
+-- Date: Month Day, Year
 -- Description: This is the level 2 screen of the game.
 -----------------------------------------------------------------------------------------
 
@@ -10,10 +14,10 @@
 
 ----------------------------------------------------------------------------------------
     -- SOUNDS
-----------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------
  local level2Sound = audio.loadSound( "Sounds/Level2.mp3" )
- local level2SoundChannel
-----------------------------------------------------------------------------------------
+local level2SoundChannel
+    ----------------------------------------------------------------------------------------
 
 -- Use Composer Library
 local composer = require( "composer" )
@@ -26,7 +30,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "level1_screen"
+sceneName = "level2_screen"
 
 -----------------------------------------------------------------------------------------
 
@@ -39,6 +43,7 @@ local scene = composer.newScene( sceneName )
 
 -- The local variables for this scene
 local bkg
+
 
 -- determine the range for the numbers to add
 local MIN_NUM = 1
@@ -63,10 +68,17 @@ local wrongAnswer1TextObject
 local wrongAnswer2TextObject
 local wrongAnswer3TextObject
 
+-- displays the number correct that the user has
+--local numberCorrectText 
+
+-- displays the number incorrect that the user has
+--local numberIncorrectText 
+
 -- displays the lives
 local livesText 
 local lives = 4
 local numberCorrect = 0
+
 
 local heart1
 local heart2
@@ -93,9 +105,9 @@ local alreadyClickedAnswer = false
 -- SOUND
 -----------------------------------------------------------------------------------------
 -- bkg game music
-local level2Sound = audio.loadSound("Sounds/Level2.mp3" ) 
+local level1Sound = audio.loadSound("Sounds/Level1.mp3" ) 
 -- Setting a variable to an mp3 file
-local level2Channel
+local level1Channel
 
 -- corect sound
 local correctSound = audio.loadSound("Sounds/Correct.mp3" ) 
@@ -113,10 +125,10 @@ local incorrectSoundChannel
 
 local function DetermineAnswers()
     -- calculate the correct answer as well as the wrong answers
-    answer = firstNumber + secondNumber
+    answer = firstNumber - secondNumber
     wrongAnswer1 = answer - math.random(1,3)
-    wrongAnswer2 = answer + math.random(4,8)
-    wrongAnswer3 = answer + math.random(9,13)
+    wrongAnswer2 = answer - math.random(4,8)
+    wrongAnswer3 = answer - math.random(9,13)
 end
 
 -- Function that changes the answers for a new question and places them randomly in one of the positions
@@ -131,33 +143,33 @@ local function DisplayAnswers( )
 
     if (answerPosition == 1) then                
         
-        answerTextObject.x = display.contentWidth*.55        
-        wrongAnswer1TextObject.x = display.contentWidth*.45
-        wrongAnswer2TextObject.x = display.contentWidth*.35
-        wrongAnswer3TextObject.x = display.contentWidth*.65 
+        answerTextObject.x = display.contentWidth*.8        
+        wrongAnswer1TextObject.x = display.contentWidth*.6
+        wrongAnswer2TextObject.x = display.contentWidth*.5
+        wrongAnswer3TextObject.x = display.contentWidth*.7
 
 
     elseif (answerPosition == 2) then
        
-        answerTextObject.x = display.contentWidth*.45        
-        wrongAnswer1TextObject.x = display.contentWidth*.35
-        wrongAnswer2TextObject.x = display.contentWidth*.55
-        wrongAnswer3TextObject.x = display.contentWidth*.65  
+        answerTextObject.x = display.contentWidth*.6        
+        wrongAnswer1TextObject.x = display.contentWidth*.5
+        wrongAnswer2TextObject.x = display.contentWidth*.8
+        wrongAnswer3TextObject.x = display.contentWidth*.7 
 
     elseif (answerPosition == 3) then
        
-        answerTextObject.x = display.contentWidth*.65        
-        wrongAnswer1TextObject.x = display.contentWidth*.35
-        wrongAnswer2TextObject.x = display.contentWidth*.55
-        wrongAnswer3TextObject.x = display.contentWidth*.45 
+        answerTextObject.x = display.contentWidth*.7       
+        wrongAnswer1TextObject.x = display.contentWidth*.5
+        wrongAnswer2TextObject.x = display.contentWidth*.8
+        wrongAnswer3TextObject.x = display.contentWidth*.6 
 
 
     else
        
-        answerTextObject.x = display.contentWidth*.35        
-        wrongAnswer1TextObject.x = display.contentWidth*.45
-        wrongAnswer2TextObject.x = display.contentWidth*.55
-        wrongAnswer3TextObject.x = display.contentWidth*.65 
+        answerTextObject.x = display.contentWidth*.5        
+        wrongAnswer1TextObject.x = display.contentWidth*.6
+        wrongAnswer2TextObject.x = display.contentWidth*.8
+        wrongAnswer3TextObject.x = display.contentWidth*.7 
     end
 
 end
@@ -194,7 +206,7 @@ local function DisplayAddEquation()
     secondNumber = math.random(MIN_NUM, MAX_NUM)
 
     -- create the addition equation to display
-    addEquationString = firstNumber .. " + " .. secondNumber .. " = " 
+    addEquationString = firstNumber .. " - " .. secondNumber .. " = " 
 
     -- displays text on text object
     addEquationTextObject.text = addEquationString
@@ -384,7 +396,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image
-    bkg = display.newImageRect("Images/Level1Screen.png", display.contentWidth, display.contentHeight)
+    bkg = display.newImageRect("Images/Level 2 Screen.png", display.contentWidth, display.contentHeight)
     bkg.x = display.contentCenterX
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
@@ -414,10 +426,10 @@ function scene:create( event )
     heart4.y = display.contentHeight * 1 / 13
 
     character = display.newImageRect("Images/Mermaid.png", 100, 150)
-    character.x = display.contentWidth * 2.2/ 8
-    character.y = display.contentHeight  * 4/ 8
-    character.width = 700
-    character.height = 700
+    character.x = display.contentWidth * 1.2/ 8
+    character.y = display.contentHeight  * 4.7/ 8
+    character.width = 400
+    character.height = 400
     --timer.performWithDelay( 2000, character ) 
 
     character2 = display.newImageRect("Images/Dog.png", 100, 150)
@@ -427,16 +439,16 @@ function scene:create( event )
     character2.height = 300
 
     -- create the text object that will hold the add equation. Make it empty for now.
-    addEquationTextObject = display.newText( "", display.contentWidth*5/10, display.contentHeight*2/10, nil, 90 )
+    addEquationTextObject = display.newText( "", display.contentWidth*6/10, display.contentHeight*2/10, nil, 90 )
 
     -- sets the color of the add equation text object
     addEquationTextObject:setTextColor(255/255, 255/255, 100/255)
 
     -- create the text objects that will hold the correct answer and the wrong answers
-    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight*2.8/10, nil, 65 )
-    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight*2.8/10, nil, 65 )
-    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight*2.8/10, nil, 65 )
-    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight*2.8/10, nil, 65 )
+    answerTextObject = display.newText("", display.contentWidth*.8, display.contentHeight*3/10, nil, 65 )
+    wrongAnswer1TextObject = display.newText("", display.contentWidth*.7, display.contentHeight*3/10, nil, 65 )
+    wrongAnswer2TextObject = display.newText("", display.contentWidth*.6, display.contentHeight*3/10, nil, 65 )
+    wrongAnswer3TextObject = display.newText("", display.contentWidth*.5, display.contentHeight*3/10, nil, 65 )
 
     -- create the text object that will hold the number of lives
     livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
@@ -484,7 +496,7 @@ function scene:show( event )
     local phase = event.phase
 
     -- play bkg music
-    level2SoundChannel = audio.play(level2Sound)
+    level1SoundChannel = audio.play(level1Sound)
 
     -----------------------------------------------------------------------------------------
 
