@@ -10,7 +10,7 @@
 -- SOUND
 -----------------------------------------------------------------------------------------
 -- bkg game music
-local creditsSound = audio.loadSound("Sounds/Credits.mp3" ) 
+local creditsSound = audio.loadStream("Sounds/Credits.mp3" ) 
 -- Setting a variable to an mp3 file
 local creditsChannel
 -----------------------------------------------------------------------------------------
@@ -159,7 +159,7 @@ function scene:show( event )
 
     local phase = event.phase
 
-            creditsSoundChannel = audio.play(creditsSound)
+        creditsChannel = audio.play(creditsSound, {loops= 10})
 
 
     -----------------------------------------------------------------------------------------

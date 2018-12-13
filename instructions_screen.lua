@@ -7,7 +7,7 @@
 -- SOUND
 -----------------------------------------------------------------------------------------
 -- bkg game music
-local instructionSound = audio.loadSound("Sounds/Instruction.mp3" ) 
+local instructionSound = audio.loadStream("Sounds/Instruction.mp3" ) 
 -- Setting a variable to an mp3 file
 local instructionChannel
 

@@ -15,7 +15,7 @@
 ----------------------------------------------------------------------------------------
     -- SOUNDS
     ----------------------------------------------------------------------------------------
- local level1Sound = audio.loadSound( "Sounds/Level1.mp3" )
+ local level1Sound = audio.loadStream( "Sounds/Level1.mp3" )
  local level1SoundChannel
 ----------------------------------------------------------------------------------------
 
@@ -119,11 +119,6 @@ local incorrectSound = audio.loadSound("Sounds/Incorrect.mp3" )
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
 
--- play sound effect
--- Logo sound
-local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
--- Setting a variable to an mp3 file
-local bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -502,7 +497,7 @@ function scene:show( event )
     local phase = event.phase
 
     -- play bkg music
-    level1SoundChannel = audio.play(level1Sound)
+        level1Channel = audio.play(level1Sound, {loops= 10})
 
     -----------------------------------------------------------------------------------------
 

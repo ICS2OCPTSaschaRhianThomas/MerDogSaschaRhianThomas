@@ -25,7 +25,7 @@ local scene = composer.newScene( sceneName )
 ----------------------------------------------------------------------------------------
 -- play sound effect
 -- Logo sound
-local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
+local bkgMusic = audio.loadStream("Sounds/bkgMusic.mp3" ) 
 -- Setting a variable to an mp3 file
 local bkgMusicChannel
 
