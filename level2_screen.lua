@@ -439,7 +439,7 @@ function scene:create( event )
     character2.height = 300
 
     -- create the text object that will hold the add equation. Make it empty for now.
-    addEquationTextObject = display.newText( "", display.contentWidth*6/10, display.contentHeight*2/10, nil, 90 )
+    addEquationTextObject = display.newText( "", display.contentWidth*5.5/10, display.contentHeight*2/10, nil, 90 )
 
     -- sets the color of the add equation text object
     addEquationTextObject:setTextColor(255/255, 255/255, 100/255)

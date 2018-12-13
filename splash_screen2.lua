@@ -1,6 +1,14 @@
+-----------------------------------------------------------------------------------------
+--
 -- splash_screen.lua
--- Created by: Sascha Motz
+-- Created by: Rhian Smith
 -- Date: November 12, 2018
+-- Description: This is the splash screen of the game. It displays the 
+-- company logo that...
+--
+-- splash_screen.lua
+-- Created by: Your Name
+-- Date: Month Day, Year
 -- Description: This is the splash screen of the game. It displays the 
 -- company logo that...
 -----------------------------------------------------------------------------------------
@@ -11,79 +19,41 @@ local composer = require( "composer" )
 -- Name the Scene
 sceneName = "splash_screen"
 
+-----------------------------------------------------------------------------------------
+
 -- Create Scene Object
 local scene = composer.newScene( sceneName )
 
--- hide the status bar
-display.setStatusBar(display.HiddenStatusBar)
-
-
---------------------------------------------
---SOUNDS
---------------------------------------------
--- play sound effect
--- Logo sound
-local logoSound = audio.loadSound("Sounds/logoSound2.mp3" ) 
--- Setting a variable to an mp3 file
-local logoSoundChannel = audio.play(logoSound)
-
---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
---------------------------------------------------------------------------------------------
---add the logo image
-local logo
--- controls if logo is more or less transparent
-local fadeLogo = 1
--- controls the x direction of the logo
-local directionLogo = 1
-
-
--- variable for speed of the logo
-local scrollSpeedLogo = 10
-
-
 -----------------------------------------------------------------------------------------
-
+ 
+-- The local variables for this scene
+local logo
+local scrollXSpeed = 8
+local scrollYSpeed = -3
+local jungleSounds = audio.loadSound("Sounds/animals144.mp3")
+local jungleSoundsChannel
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
 
---Function: MoveLogo
--- Input: this function accepts and event listener
---Description: This function adds the scroll speed to the x-value of the logo
-local function MoveLogo (event)
-    -- make the logo more transparent if it is fully visible
-    if  logo.alpha == 1 then
-        fadeLogo = 0
-    end
-    -- make the logo less transparent if it is fully transparent
-    if logo.alpha == 0 then
-        fadeLogo = 1
-    end
+-- Creating Transition to Level1 Screen
+local function SplashScreen3Transition( )
+    composer.gotoScene( "splash_screen3", {effect = "flip", time = 1000})
+end    
 
-    -- change the transparency of the logo based on fadeLogo
-    if fadeLogo == 1 then
-        logo.alpha = logo.alpha + 0.02
-    else
-       logo.alpha = logo.alpha - 0.02
-    end
-
-    -- change x position of logo based on directionLogo
-    if directionLogo == 1 then
-        logo.x = logo.x + scrollSpeedLogo
-    else
-        logo.x = logo.x - scrollSpeedLogo
-    end
+-- The function that moves the beetleship across the screen
+local function movelogo()
+    logo.x = logo.x + scrollXSpeed
+    logo.y = logo.y + scrollYSpeed
 end
-
-
 
 -- The function that will go to the main menu 
 local function gotoMainMenu()
-    composer.gotoScene( "splash_screen2" )
+    composer.gotoScene( "main_menu" )
 end
-
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -95,18 +65,15 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -- sets the background colour
-    display.setDefault("background", 192/255, 192/255, 192/255 )
+    -- set the background to be black
+    display.setDefault("background", 0, 0, 0)
 
-    -- Insert the logo image    
-    logo = display.newImageRect("Images/CompanyLogoSaschaM.png", 600, 600)
+    -- Insert the beetleship image
+    logo = display.newImageRect("Images/logo.png", 200, 200)
 
-    --set initial x and y position of the logo
-    logo.x = -500
+    -- set the initial x and y position of the beetleship
+    logo.x = 100
     logo.y = display.contentHeight/2
-
-    -- set the transparency of the Logo
-    logo.alpha = 0
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( logo )
@@ -134,20 +101,13 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
         -- start the splash screen music
-        logoSoundChannel = audio.play(logoSound)
+        jungleSoundsChannel = audio.play(jungleSounds )
 
         -- Call the moveBeetleship function as soon as we enter the frame.
-        Runtime:addEventListener("enterFrame", MoveLogo)
-
-
-
-        --make logo spin
-        transition.to( logo, { rotation = logo.rotation-1940, time=13000, onComplete=spinImage } )
-        transition.to( logo, {x= 9000, time= 13000 })
-
+        Runtime:addEventListener("enterFrame", movelogo)
 
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay ( 2700, gotoMainMenu)          
+        timer.performWithDelay ( 3000, gotoMainMenu)          
         
     end
 
@@ -173,8 +133,9 @@ function scene:hide( event )
 
     -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
-        Runtime:removeEventListener("enterFrame", MoveLogo)
         
+        -- stop the jungle sounds channel for this screen
+        audio.stop(jungleSoundsChannel)
     end
 
 end --function scene:hide( event )
