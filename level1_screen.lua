@@ -213,8 +213,9 @@ local function DisplayAddEquation()
     addEquationTextObject.text = addEquationString
 end
 
-local function RestartScene()
+local function RestartLevel1()
 
+    alreadyClickedAnswer = false
  
     correct.isVisible = false
     incorrect.isVisible = false
@@ -231,15 +232,6 @@ local function RestartScene()
         DisplayAnswers()
     end
 end
-
-local function AlreadyClicked()
-    if (alreadyClickedAnswer = false) then
-
-    end
-
-    if (alreadyClickedAnswer = true) then 
-
-    end
 
 
 -- function that operates update hearts
@@ -282,21 +274,24 @@ local function TouchListenerAnswer(touch)
 
     
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
         -- get the user answer from the text object that was clicked on
         userAnswer = answerTextObject.text
         
 
-        -- if the user gets the answer right, display Correct and call RestartSceneRight
+        -- if the user gets the answer right, display Correct and call RestartLevel1Right
         if (answer == tonumber(userAnswer)) then     
             correct.isVisible = true
             -- play correct sound
             correctSoundChannel = audio.play(correctSound)
             -- increase the number correct by 1
             numberCorrect = numberCorrect + 1
-            -- call RestartScene after 1 second
-            timer.performWithDelay( 1000, RestartScene )
+            -- call RestartLevel1 after 1 second
+            timer.performWithDelay( 1000, RestartLevel1 )
         end        
 
     end
@@ -306,9 +301,10 @@ local function TouchListenerWrongAnswer1(touch)
     -- get the user answer from the text object that was clicked on
     userAnswer = wrongAnswer1TextObject.text
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-     
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
         if (answer ~= tonumber(userAnswer)) then
             -- decrease a life
@@ -320,8 +316,8 @@ local function TouchListenerWrongAnswer1(touch)
 
             --play wrong sound
             incorrectSoundChannel = audio.play(incorrectSound)
-            -- call RestartScene after 1 second
-            timer.performWithDelay( 1000, RestartScene )            
+            -- call RestartLevel1 after 1 second
+            timer.performWithDelay( 1000, RestartLevel1 )            
         end        
 
     end
@@ -332,10 +328,10 @@ local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongAnswer2TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false)  then
 
-          
-
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
@@ -347,8 +343,8 @@ local function TouchListenerWrongAnswer2(touch)
                 incorrect.isVisible = true
                 --play wrong sound
                 incorrectSoundChannel = audio.play(incorrectSound)
-                -- call RestartScene after 1 second
-                timer.performWithDelay( 1000, RestartScene )            
+                -- call RestartLevel1 after 1 second
+                timer.performWithDelay( 1000, RestartLevel1 )            
             end        
     
         end
@@ -359,10 +355,10 @@ local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongAnswer3TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-          
-
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
@@ -374,8 +370,8 @@ local function TouchListenerWrongAnswer3(touch)
                 incorrect.isVisible = true
                 --play wrong sound
                 incorrectSoundChannel = audio.play(incorrectSound)
-                -- call RestartScene after 1 second
-                timer.performWithDelay( 1000, RestartScene )            
+                -- call RestartLevel1 after 1 second
+                timer.performWithDelay( 1000, RestartLevel1 )            
             end        
     
         end
@@ -533,7 +529,7 @@ function scene:show( event )
         AddTextObjectListeners()        
 
         -- call the function to restart the scene
-        RestartScene()
+        RestartLevel1()
     end
 
 end
