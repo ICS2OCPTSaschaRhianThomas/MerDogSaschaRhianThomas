@@ -1,3 +1,9 @@
+-- main_menu.lua
+-- Created by: Sascha Motz
+-- Date: November 12, 2018
+-- Description: This is the main menu, displaying the credits, instructions & play buttons.
+-----------------------------------------------------------------------------------------
+
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -125,8 +131,6 @@ function scene:create( event )
 
             -- When the button is released, call the Level1 screen transition function
             onRelease = Level1ScreenTransition
-            --onRelease = audio.stop(bkgMusic) 
-
         } )
 
     -----------------------------------------------------------------------------------------
