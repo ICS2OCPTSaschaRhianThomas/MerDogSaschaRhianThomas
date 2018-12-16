@@ -15,7 +15,7 @@
 ----------------------------------------------------------------------------------------
     -- SOUNDS
     ----------------------------------------------------------------------------------------
- local level1Sound = audio.loadSound( "Sounds/Level1.mp3" )
+ local level1Sound = audio.loadStream( "Sounds/Level1.mp3" )
  local level1SoundChannel
 ----------------------------------------------------------------------------------------
 
@@ -119,11 +119,6 @@ local incorrectSound = audio.loadSound("Sounds/Incorrect.mp3" )
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
 
--- play sound effect
--- Logo sound
-local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
--- Setting a variable to an mp3 file
-local bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -218,8 +213,9 @@ local function DisplayAddEquation()
     addEquationTextObject.text = addEquationString
 end
 
-local function RestartScene()
+local function RestartLevel1()
 
+    alreadyClickedAnswer = false
  
     correct.isVisible = false
     incorrect.isVisible = false
@@ -236,6 +232,7 @@ local function RestartScene()
         DisplayAnswers()
     end
 end
+
 
 -- function that operates update hearts
 local function UpdateHearts()
@@ -261,6 +258,13 @@ local function UpdateHearts()
         heart2.isVisible = false
         heart3.isVisible = false
         heart4.isVisible = true
+     elseif (lives == 0) then
+        heart1.isVisible = false
+        heart2.isVisible = false
+        heart3.isVisible = false
+        heart4.isVisible = false
+        LoseScreenTransition( )
+
 
     end
 end
@@ -270,21 +274,24 @@ local function TouchListenerAnswer(touch)
 
     
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
         -- get the user answer from the text object that was clicked on
         userAnswer = answerTextObject.text
         
 
-        -- if the user gets the answer right, display Correct and call RestartSceneRight
+        -- if the user gets the answer right, display Correct and call RestartLevel1Right
         if (answer == tonumber(userAnswer)) then     
             correct.isVisible = true
             -- play correct sound
             correctSoundChannel = audio.play(correctSound)
             -- increase the number correct by 1
             numberCorrect = numberCorrect + 1
-            -- call RestartScene after 1 second
-            timer.performWithDelay( 1000, RestartScene )
+            -- call RestartLevel1 after 1 second
+            timer.performWithDelay( 1000, RestartLevel1 )
         end        
 
     end
@@ -294,9 +301,10 @@ local function TouchListenerWrongAnswer1(touch)
     -- get the user answer from the text object that was clicked on
     userAnswer = wrongAnswer1TextObject.text
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-     
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
         if (answer ~= tonumber(userAnswer)) then
             -- decrease a life
@@ -308,8 +316,8 @@ local function TouchListenerWrongAnswer1(touch)
 
             --play wrong sound
             incorrectSoundChannel = audio.play(incorrectSound)
-            -- call RestartScene after 1 second
-            timer.performWithDelay( 1000, RestartScene )            
+            -- call RestartLevel1 after 1 second
+            timer.performWithDelay( 1000, RestartLevel1 )            
         end        
 
     end
@@ -320,10 +328,10 @@ local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongAnswer2TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false)  then
 
-          
-
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
@@ -335,8 +343,8 @@ local function TouchListenerWrongAnswer2(touch)
                 incorrect.isVisible = true
                 --play wrong sound
                 incorrectSoundChannel = audio.play(incorrectSound)
-                -- call RestartScene after 1 second
-                timer.performWithDelay( 1000, RestartScene )            
+                -- call RestartLevel1 after 1 second
+                timer.performWithDelay( 1000, RestartLevel1 )            
             end        
     
         end
@@ -347,10 +355,10 @@ local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongAnswer3TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-          
-
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
@@ -362,8 +370,8 @@ local function TouchListenerWrongAnswer3(touch)
                 incorrect.isVisible = true
                 --play wrong sound
                 incorrectSoundChannel = audio.play(incorrectSound)
-                -- call RestartScene after 1 second
-                timer.performWithDelay( 1000, RestartScene )            
+                -- call RestartLevel1 after 1 second
+                timer.performWithDelay( 1000, RestartLevel1 )            
             end        
     
         end
@@ -502,7 +510,7 @@ function scene:show( event )
     local phase = event.phase
 
     -- play bkg music
-    level1SoundChannel = audio.play(level1Sound)
+        level1Channel = audio.play(level1Sound, {loops= 10})
 
     -----------------------------------------------------------------------------------------
 
@@ -521,7 +529,7 @@ function scene:show( event )
         AddTextObjectListeners()        
 
         -- call the function to restart the scene
-        RestartScene()
+        RestartLevel1()
     end
 
 end
