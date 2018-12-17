@@ -7,6 +7,20 @@
 
 display.setStatusBar(display.HiddenStatusBar)				 -- Hide status bar
 
+-----------------------------------------------------------------------------------------
+
+-- Use Composer Library
+local composer = require( "composer" )
+
+-- Name the Scene
+sceneName = "splash_screen3"
+
+-----------------------------------------------------------------------------------------
+
+-- Create Scene Object
+local scene = composer.newScene( sceneName )
+
+
 counter = 0
 
 -- sets the background color 
@@ -24,7 +38,7 @@ logo.x = 600					-- setting the coordinates of the Image
 logo.y = display.contentHeight/2
 
 
-local function moveLogo()
+local function MoveLogo()
 	logo.x = logo.x + math.random(-10,10)  -- making the image move the X and Y on the screen to another very quickly from numbers between -10 and 10.
 	logo.y = logo.y + math.random(-10,10)
 end
@@ -46,7 +60,7 @@ local function animateLogo() -- used some from internet
 	elseif (counter < 200) then
 		shrinkLogo()
 	else
-		moveLogo()
+		MoveLogo()
 	end
 end
 
@@ -88,18 +102,6 @@ function scene:create( event )
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( logo )
 end -- function scene:create( event )
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 --------------------------------------------------------------------------------------------
