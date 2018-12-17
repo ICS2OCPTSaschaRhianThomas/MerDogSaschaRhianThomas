@@ -58,6 +58,7 @@ local userAnswer
 local answer 
 local wrongAnswer1
 local wrongAnswer2
+local temp
 
 -- the text object that will hold the addition equation
 local addEquationTextObject 
@@ -84,6 +85,9 @@ local heart1
 local heart2
 local heart3
 local heart4
+
+-- 1 for add, 2 for subtract
+local addOrSubtract = 1
 
 -- character
 local character
@@ -124,11 +128,15 @@ local incorrectSoundChannel
 -----------------------------------------------------------------------------------------
 
 local function DetermineAnswers()
+
     -- calculate the correct answer as well as the wrong answers
-    answer = firstNumber - secondNumber
+    if (addOrSubtract == 1) then 
+        answer = firstNumber - secondNumber
+    end 
     wrongAnswer1 = answer - math.random(1,3)
-    wrongAnswer2 = answer - math.random(4,8)
-    wrongAnswer3 = answer - math.random(9,13)
+    
+    wrongAnswer2 = answer - math.random(1,3)
+    wrongAnswer3 = answer - math.random(4,8)
 end
 
 -- Function that changes the answers for a new question and places them randomly in one of the positions
@@ -196,22 +204,24 @@ local function WinScreenTransition( )
     composer.gotoScene( "you_win", {effect = "zoomInOutFade", time = 1000})
 end 
 
--- The function that displays the equation and determines the answer and the wrong answers
+
 local function DisplayAddEquation()
-    -- local variables to this function
-    local addEquationString
 
     -- choose the numbers to add randomly
     firstNumber = math.random(MIN_NUM, MAX_NUM)
     secondNumber = math.random(MIN_NUM, MAX_NUM)
 
-    -- create the addition equation to display
-    addEquationString = firstNumber .. " - " .. secondNumber .. " = " 
-
-    -- displays text on text object
-    addEquationTextObject.text = addEquationString
-end
-
+        -- if the first number is smaller then second number 
+        if (firstNumber < secondNumber) then 
+            -- switch them 
+            temp = secondNumber
+            secondNumber = firstNumber
+            firstNumber = temp
+        end 
+        -- create the subtraction equation to display
+        addEquationTextObject.text = firstNumber .. " - " .. secondNumber .. " = "
+    end 
+  
 local function RestartScene()
 
  
