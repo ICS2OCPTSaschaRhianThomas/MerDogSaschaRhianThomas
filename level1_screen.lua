@@ -459,10 +459,10 @@ function scene:create( event )
     addEquationTextObject:setTextColor(255/255, 255/255, 100/255)
 
     -- create the text objects that will hold the correct answer and the wrong answers
-    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight*2.8/10, nil, 65 )
-    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight*2.8/10, nil, 65 )
-    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight*2.8/10, nil, 65 )
-    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight*2.8/10, nil, 65 )
+    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight*3.5/10, nil, 65 )
+    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight*3.5/10, nil, 65 )
+    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight*3.5/10, nil, 65 )
+    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight*3.5/10, nil, 65 )
 
     -- create the text object that will hold the number of lives
     livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
