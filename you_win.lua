@@ -43,6 +43,10 @@ local bkg
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
+-- Creating Transition to Level1 Screen
+local function Level1ScreenTransition( )
+    composer.gotoScene( "level1_screen", {effect = "flip", time = 1000})
+end 
 --------------------------------------------------------------------------------------
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -59,8 +63,30 @@ function scene:create( event )
    
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
-  
+    sceneGroup:insert( retryButton )
 end    
+
+   -----------------------------------------------------------------------------------------
+    -- BUTTON WIDGETS
+    -----------------------------------------------------------------------------------------   
+
+    -- Creating Play Button
+    retryButton = widget.newButton( 
+        {   
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth*2/10,
+            y = display.contentHeight*7/8,
+
+            -- Insert the images here
+            defaultFile = "Images/RetryLevelUnpressed.png",
+            overFile = "Images/RetryLevelPressed.png",
+
+            width = 200,
+            height = 150,
+
+            -- When the button is released, call the Level1 screen transition function
+            onRelease = Level1ScreenTransition
+        } )
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
