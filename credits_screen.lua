@@ -12,7 +12,7 @@
 -- bkg game music
 local creditsSound = audio.loadStream("Sounds/Credits.mp3" ) 
 -- Setting a variable to an mp3 file
-local creditsChannel
+local creditsChannel = 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
