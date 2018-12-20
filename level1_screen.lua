@@ -16,7 +16,8 @@
     -- SOUNDS
     ----------------------------------------------------------------------------------------
  local level1Sound = audio.loadStream( "Sounds/Level1.mp3" )
- local level1SoundChannel
+ local level1SoundChannel =  audio.play(level1Sound, { channel=1, loops=-1 } )
+
 ----------------------------------------------------------------------------------------
 
 -- Use Composer Library
@@ -510,7 +511,6 @@ function scene:show( event )
     local phase = event.phase
 
     -- play bkg music
-        level1Channel = audio.play(level1Sound, {loops= 10})
 
     -----------------------------------------------------------------------------------------
 
