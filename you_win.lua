@@ -76,7 +76,7 @@ end
     -- BUTTON WIDGETS
     -----------------------------------------------------------------------------------------   
 
-    -- Creating Play Button
+    -- Creating retry Button
     retryButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
@@ -94,7 +94,7 @@ end
             onRelease = Level1ScreenTransition
         } )
 --------------------------------------------------------------------------------------------------
- -- Creating Play Button
+ -- Creating next level Button
     nextLevelButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
