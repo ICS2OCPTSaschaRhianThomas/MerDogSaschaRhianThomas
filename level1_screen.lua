@@ -190,7 +190,7 @@ end
 
 -- Function that transitions to Lose Screen
 local function LoseScreenTransition( )        
-    composer.gotoScene( "you_lose", {effect = "zoomInOutFade", time = 1000})
+    composer.gotoScene( "you_lose", {effect = "zoomInOutFade", time = 500})
 end 
 
 -- Function that transitions to Lose Screen
@@ -397,7 +397,6 @@ local function RemoveTextObjectListeners()
     wrongAnswer3TextObject:removeEventListener("touch", TouchListenerWrongAnswer3)
 
 end
-
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
