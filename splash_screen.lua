@@ -41,10 +41,6 @@ local directionLogo = 1
 -- variable for speed of the logo
 local scrollSpeedLogo = 10
 
-
------------------------------------------------------------------------------------------
-
-
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
@@ -77,13 +73,10 @@ local function MoveLogo (event)
     end
 end
 
-
-
 -- The function that will go to the main menu 
 local function gotoMainMenu()
-    composer.gotoScene( "splash_screen2" )
+    composer.gotoScene( "main_menu" )
 end
-
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -148,9 +141,7 @@ function scene:show( event )
 
         -- Go to the main menu screen after the given time.
         timer.performWithDelay ( 1500, gotoMainMenu)          
-        
     end
-
 end --function scene:show( event )
 
 -----------------------------------------------------------------------------------------
@@ -176,7 +167,6 @@ function scene:hide( event )
         Runtime:removeEventListener("enterFrame", MoveLogo)
         
     end
-
 end --function scene:hide( event )
 
 -----------------------------------------------------------------------------------------
@@ -188,7 +178,6 @@ function scene:destroy( event )
     local sceneGroup = self.view
 
     -----------------------------------------------------------------------------------------
-
 
     -- Called prior to the removal of scene's view ("sceneGroup").
     -- Insert code here to clean up the scene.

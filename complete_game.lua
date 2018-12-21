@@ -1,12 +1,9 @@
 -----------------------------------------------------------------------------------------
--- you_lose.lua
--- Created by: Gil Robern
--- Modified by: Sascha Motz
--- Date: November 19, 2018
--- Description: This shows the player that 
---they lost the game and plays a booing sound.
+-- complete_game.lua
+-- SceneTemplate.lua
+-- Scene Template (Composer API)
+--
 -----------------------------------------------------------------------------------------
-
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -19,45 +16,55 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_lose"
+sceneName = "complete_game"
 
 -----------------------------------------------------------------------------------------
 
 -- Creating Scene Object
 local scene = composer.newScene( sceneName )
 
------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 -- SOUNDS
------------------------------------------------------------------------------------------
--- lose game sound
-local loseSound = audio.loadSound("Sounds/you_lose.mp3" ) 
+---------------------------------------------------------------------------------------
+-- win sound 
+local winSound = audio.loadSound("Sounds/you_win.mp3" ) 
 -- Setting a variable to an mp3 file
-local loseSoundChannel
+local winSoundChannel
 
 -----------------------------------------------------------------------------------------
--- LOCAL VARIABLES
+-- FORWARD REFERENCES
 -----------------------------------------------------------------------------------------
 
 -- local variables for the scene
 local bkg
 
+----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
--- FUNCTIONS
+-- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 -- Creating Transition to Level1 Screen
-local function Level1ScreenTransition( )
-    composer.gotoScene( "level1_screen", {effect = "flip", time = 1000})
+local function MainMenuScreenTransition( )
+    composer.gotoScene( "main_menu", {effect = "flip", time = 1000})
 end 
+--------------------------------------------------------------------------------------
+-- The function called when the screen doesn't exist
+function scene:create( event )
 
--- Creating Transition to Level1 Screen
-local function Level2ScreenTransition( )
-    composer.gotoScene( "level2_screen", {effect = "flip", time = 1000})
-end
+    -- Creating a group that associates objects with the scene
+    local sceneGroup = self.view
 
--- Creating Transition to Level1 Screen
-local function Level3ScreenTransition( )
-    composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
-end 
+    -- Display background
+    bkg = display.newImage("Images/CompleteGame.png")
+    bkg.x = display.contentCenterX
+    bkg.y = display.contentCenterY
+    bkg.width = display.contentWidth
+    bkg.height = display.contentHeight
+   
+    -- Associating display objects with this scene 
+    sceneGroup:insert( bkg )
+    sceneGroup:insert( retryButton )
+    sceneGroup:insert( nextLevelButton )
+end    
 
    -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
@@ -96,39 +103,11 @@ end
             height = 150,
 
             -- When the button is released, call the Level1 screen transition function
-            onRelease = Level2ScreenTransition
+            onRelease = MainMenuScreenTransition
         } )
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
-
--- The function called when the screen doesn't exist
-function scene:create( event )
-
-    -- Creating a group that associates objects with the scene
-    local sceneGroup = self.view
-
-    -- Display background
-    bkg = display.newImage("Images/youLose.png")
-    bkg.x = display.contentCenterX
-    bkg.y = display.contentCenterY
-    bkg.width = display.contentWidth
-    bkg.height = display.contentHeight
-
-    sceneGroup:insert( bkg )
-    sceneGroup:insert( retryButton )
-    sceneGroup:insert( nextLevelButton )
-        -- Display background
-    --bkg = display.newImage("Images/You Lose.png")
-    --bkg.x = display.contentCenterX
-    --bkg.y = display.contentCenterY
-    --bkg.width = display.contentWidth
-    --bkg.height = display.contentHeight
-    -----------------------------------------------------------------------------------------     
-
-    -- Associating display objects with this scene 
-    sceneGroup:insert( bkg )
-end
 
 -----------------------------------------------------------------------------------------
 
@@ -154,8 +133,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        -- play losing sound
-        loseSoundChannel = audio.play(loseSound)
+        --win sound
+        winSoundChannel = audio.play(winSound)
     end
 
 end
@@ -179,6 +158,7 @@ function scene:hide( event )
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
         audio.stop()
+
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
@@ -202,8 +182,6 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 end
-
-
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
 -----------------------------------------------------------------------------------------

@@ -194,7 +194,7 @@ end
 
 -- Function that transitions to Lose Screen
 local function WinScreenTransition( )        
-    composer.gotoScene( "you_win", {effect = "zoomInOutFade", time = 1000})
+    composer.gotoScene( "complete_game", {effect = "zoomInOutFade", time = 1000})
 end 
 
 -- The function that displays the equation and determines the answer and the wrong answers
@@ -235,7 +235,7 @@ local function RestartScene()
         composer.gotoScene("you_lose")
 
     elseif (numberCorrect == 5) then
-        composer.gotoScene("you_win")
+        composer.gotoScene("complete_game")
     else
         -- determine if it is add or subtract
         addOrSubtract = math.random(1,2)
@@ -403,7 +403,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image
-    bkg = display.newImageRect("Images/Level1Screen.png", display.contentWidth, display.contentHeight)
+    bkg = display.newImageRect("Images/level3Screen.png", display.contentWidth, display.contentHeight)
     bkg.x = display.contentCenterX
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
