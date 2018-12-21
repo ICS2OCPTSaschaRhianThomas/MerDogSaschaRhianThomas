@@ -12,7 +12,7 @@
 -- bkg game music
 local creditsSound = audio.loadStream("Sounds/Credits.mp3" ) 
 -- Setting a variable to an mp3 file
-local creditsChannel = 
+local creditsChannel 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -105,17 +105,6 @@ function scene:create( event )
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
 
-    -- Associating display objects with this scene 
-    sceneGroup:insert( bkg_image )
-    sceneGroup:insert( sascha )
-    sceneGroup:insert( thomas )
-    sceneGroup:insert( rhian )
-    sceneGroup:insert( kaitlyn )
-    sceneGroup:insert( phoebe )
-
-    -- Send the background image to the back layer so all other objects can be on top
-    bkg_image:toBack()
-
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
     -----------------------------------------------------------------------------------------
@@ -140,10 +129,18 @@ function scene:create( event )
 
     } )
 
+
+
     -----------------------------------------------------------------------------------------
 
     -- Associating Buttons with this scene
+    sceneGroup:insert( bkg_image )
     sceneGroup:insert( backButton )
+    sceneGroup:insert( sascha )
+    sceneGroup:insert( thomas )
+    sceneGroup:insert( rhian )
+    sceneGroup:insert( kaitlyn )
+    sceneGroup:insert( phoebe )
     
 end --function scene:create( event )
 
