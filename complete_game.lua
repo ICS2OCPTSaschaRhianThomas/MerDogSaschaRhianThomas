@@ -96,8 +96,8 @@ end
             y = display.contentHeight*7/8,
 
             -- Insert the images here
-            defaultFile = "Images/NextLevelUnpressed.png",
-            overFile = "Images/NextLevelPressed.png",
+            defaultFile = "Images/mainMenuUnpressed.png",
+            overFile = "Images/mainMenuPressed.png",
 
             width = 200,
             height = 150,
