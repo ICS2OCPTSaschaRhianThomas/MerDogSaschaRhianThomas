@@ -1,10 +1,9 @@
 -----------------------------------------------------------------------------------------
--- you_win.lua
+-- complete_game.lua
 -- SceneTemplate.lua
 -- Scene Template (Composer API)
 --
 -----------------------------------------------------------------------------------------
-
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -104,7 +103,7 @@ end
             height = 150,
 
             -- When the button is released, call the Level1 screen transition function
-            onRelease = Level2ScreenTransition
+            onRelease = MainMenuScreenTransition
         } )
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -183,8 +182,6 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 end
-
-
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
 -----------------------------------------------------------------------------------------
