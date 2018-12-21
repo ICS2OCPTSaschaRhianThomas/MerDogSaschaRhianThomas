@@ -396,7 +396,6 @@ local function RemoveTextObjectListeners()
     wrongAnswer3TextObject:removeEventListener("touch", TouchListenerWrongAnswer3)
 
 end
-
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
