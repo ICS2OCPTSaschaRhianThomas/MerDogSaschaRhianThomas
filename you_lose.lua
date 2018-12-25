@@ -59,6 +59,36 @@ local function Level3ScreenTransition( )
     composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
 end 
 
+local function NextLevel( )
+    if ( level == 1 ) then
+        level = 2
+        composer.gotoScene( "level2_screen", {effect = "flip", time = 1000})
+
+    elseif ( level == 2 ) then
+        level = 3
+        composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
+
+    elseif ( level == 3 ) then
+        level = 3
+        composer.gotoScene( "complete_game", {effect = "flip", time = 1000})
+    end
+end
+
+local function RetryLevel( )
+    if ( level == 1 ) then
+        level = 1
+        composer.gotoScene( "level1_screen", {effect = "flip", time = 1000})
+
+    elseif ( level == 2 ) then
+        level = 2
+        composer.gotoScene( "level2_screen", {effect = "flip", time = 1000})
+
+    elseif ( level == 3 ) then
+        level = 3
+        composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
+    end
+end
+
    -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
     -----------------------------------------------------------------------------------------   
@@ -78,7 +108,7 @@ end
             height = 150,
 
             -- When the button is released, call the Level1 screen transition function
-            onRelease = Level1ScreenTransition
+            onRelease = RetryLevel
         } )
 --------------------------------------------------------------------------------------------------
  -- Creating next level Button
