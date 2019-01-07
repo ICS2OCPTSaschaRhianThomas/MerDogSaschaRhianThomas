@@ -40,11 +40,31 @@ local thomas
 local rhian
 local phoebe
 
+
 -----------------------------------------------------------------------------------------
---PHOTOSHOPED CHARACTERS
+-- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
- local sascha = display.newImageRect("Images/Sascha.png", 200, 500)
+-- Creating Transitioning Function back to main menu
+local function BackTransition( )
+    composer.gotoScene( "main_menu", {effect = "zoomOutInFadeRotate", time = 500})
+end
+
+
+-----------------------------------------------------------------------------------------
+-- GLOBAL SCENE FUNCTIONS
+-----------------------------------------------------------------------------------------
+
+-- The function called when the screen doesn't exist
+function scene:create( event )
+
+    -- Creating a group that associates objects with the scene
+    local sceneGroup = self.view
+
+    -----------------------------------------------------------------------------------------
+    -- BACKGROUND AND DISPLAY OBJECTS
+    -----------------------------------------------------------------------------------------
+     local sascha = display.newImageRect("Images/Sascha.png", 200, 500)
 sascha.x = display.contentWidth * 2.2/ 8
 sascha.y = display.contentHeight  * 4/ 8
 sascha.width = 200
@@ -74,29 +94,6 @@ phoebe.y = display.contentHeight  * 6.4/ 8
 phoebe.width = 200
 phoebe.height = 200
 
------------------------------------------------------------------------------------------
--- LOCAL FUNCTIONS
------------------------------------------------------------------------------------------
-
--- Creating Transitioning Function back to main menu
-local function BackTransition( )
-    composer.gotoScene( "main_menu", {effect = "zoomOutInFadeRotate", time = 500})
-end
-
-
------------------------------------------------------------------------------------------
--- GLOBAL SCENE FUNCTIONS
------------------------------------------------------------------------------------------
-
--- The function called when the screen doesn't exist
-function scene:create( event )
-
-    -- Creating a group that associates objects with the scene
-    local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
-    -- BACKGROUND AND DISPLAY OBJECTS
-    -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
     bkg_image = display.newImageRect("Images/CreditsBackground.png", display.contentWidth, display.contentHeight)
