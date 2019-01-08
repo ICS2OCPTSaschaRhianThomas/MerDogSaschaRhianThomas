@@ -224,27 +224,6 @@ local function DisplayAddEquation()
   
 end
 
-
-local function RestartScene()
-
-    correct.isVisible = false
-    incorrect.isVisible = false
-
-    -- if they have 0 lives, go to the You Lose screen
-    if (lives == 0) then
-        composer.gotoScene("you_lose")
-
-    elseif (numberCorrect == 5) then
-        composer.gotoScene("complete_game")
-    else
-        -- determine if it is add or subtract
-        addOrSubtract = math.random(1,2)
-        DisplayAddEquation()
-        DetermineAnswers()
-        DisplayAnswers()
-    end
-end
-
 -- function that operates update hearts
 local function UpdateHearts()
 
@@ -271,6 +250,29 @@ local function UpdateHearts()
         heart4.isVisible = true
     end
 end
+
+
+local function RestartScene()
+
+    correct.isVisible = false
+    incorrect.isVisible = false
+
+    -- if they have 0 lives, go to the You Lose screen
+    if (lives == 0) then
+        composer.gotoScene("you_lose")
+
+    elseif (numberCorrect == 5) then
+        composer.gotoScene("complete_game")
+    else
+        -- determine if it is add or subtract
+        addOrSubtract = math.random(1,2)
+        DisplayAddEquation()
+        DetermineAnswers()
+        DisplayAnswers()
+        UpdateHearts()
+    end
+end
+
 
 -- Functions that checks if the buttons have been clicked.
 local function TouchListenerAnswer(touch)
@@ -517,6 +519,7 @@ function scene:show( event )
         -- initialize the number of lives and number correct 
         lives = 4
         numberCorrect = 0
+        level = 3
 
         -- listeners to each of the answer text objects
         AddTextObjectListeners()        

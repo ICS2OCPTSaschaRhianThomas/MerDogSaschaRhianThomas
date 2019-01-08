@@ -40,6 +40,7 @@ local loseSoundChannel
 
 -- local variables for the scene
 local bkg
+local retryButton
 
 -----------------------------------------------------------------------------------------
 -- FUNCTIONS
@@ -60,6 +61,7 @@ local function Level3ScreenTransition( )
 end 
 
 local function NextLevel( )
+    print ("***level = " .. level)
     if ( level == 1 ) then
         level = 2
         composer.gotoScene( "level2_screen", {effect = "flip", time = 1000})
@@ -74,21 +76,41 @@ local function NextLevel( )
 end
 
 local function RetryLevel( )
+    print ("***level = " .. level)
     if ( level == 1 ) then
-        level = 1
+
         composer.gotoScene( "level1_screen", {effect = "flip", time = 1000})
 
     elseif ( level == 2 ) then
-        level = 2
+  
         composer.gotoScene( "level2_screen", {effect = "flip", time = 1000})
 
     elseif ( level == 3 ) then
-        level = 3
+
         composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
     end
 end
 
-   -----------------------------------------------------------------------------------------
+ 
+-----------------------------------------------------------------------------------------
+-- GLOBAL SCENE FUNCTIONS
+-----------------------------------------------------------------------------------------
+
+-- The function called when the screen doesn't exist
+function scene:create( event )
+
+    -- Creating a group that associates objects with the scene
+    local sceneGroup = self.view
+
+    -- Display background
+    bkg = display.newImage("Images/youLose.png")
+    bkg.x = display.contentCenterX
+    bkg.y = display.contentCenterY
+    bkg.width = display.contentWidth
+    bkg.height = display.contentHeight
+
+
+      -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
     -----------------------------------------------------------------------------------------   
 
@@ -109,6 +131,7 @@ end
             -- When the button is released, call the Level1 screen transition function
             onRelease = RetryLevel
         } )
+
 --------------------------------------------------------------------------------------------------
  -- Creating next level Button
     nextLevelButton = widget.newButton( 
@@ -127,36 +150,11 @@ end
             -- When the button is released, call the Level1 screen transition function
             onRelease = NextLevel
         } )
------------------------------------------------------------------------------------------
--- GLOBAL SCENE FUNCTIONS
------------------------------------------------------------------------------------------
-
--- The function called when the screen doesn't exist
-function scene:create( event )
-
-    -- Creating a group that associates objects with the scene
-    local sceneGroup = self.view
-
-    -- Display background
-    bkg = display.newImage("Images/youLose.png")
-    bkg.x = display.contentCenterX
-    bkg.y = display.contentCenterY
-    bkg.width = display.contentWidth
-    bkg.height = display.contentHeight
 
     sceneGroup:insert( bkg )
     sceneGroup:insert( retryButton )
     sceneGroup:insert( nextLevelButton )
-        -- Display background
-    --bkg = display.newImage("Images/You Lose.png")
-    --bkg.x = display.contentCenterX
-    --bkg.y = display.contentCenterY
-    --bkg.width = display.contentWidth
-    --bkg.height = display.contentHeight
-    -----------------------------------------------------------------------------------------     
 
-    -- Associating display objects with this scene 
-    sceneGroup:insert( bkg )
 end
 
 -----------------------------------------------------------------------------------------

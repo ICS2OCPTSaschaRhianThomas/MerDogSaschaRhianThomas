@@ -76,15 +76,15 @@ end
 
 local function RetryLevel( )
     if ( level == 1 ) then
-        level = 2
+
         composer.gotoScene( "level1_screen", {effect = "flip", time = 1000})
 
     elseif ( level == 2 ) then
-        level = 3
+
         composer.gotoScene( "level2_screen", {effect = "flip", time = 1000})
 
     elseif ( level == 3 ) then
-        level = 3
+
         composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
     end
 end
