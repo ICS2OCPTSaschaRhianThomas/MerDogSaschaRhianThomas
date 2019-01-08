@@ -82,14 +82,14 @@ rhian.y = display.contentHeight  * 4/ 8
 rhian.width = 200
 rhian.height = 200
 
- local kaitlyn = display.newImageRect("Images/Kaitlyn.png", 300, 100)
-kaitlyn.x = display.contentWidth * 4.5/ 8
-kaitlyn.y = display.contentHeight  *1.8/ 8
+ local kaitlyn = display.newImageRect("Images/Kaitlyn.png", 600, 220)
+kaitlyn.x = display.contentWidth * 6/ 8
+kaitlyn.y = display.contentHeight  *6 / 8
 kaitlyn.width = 200
 kaitlyn.height = 200
  
  local phoebe = display.newImageRect("Images/Phoebe.png", 200, 500)
-phoebe.x = display.contentWidth * 4.5/ 8
+phoebe.x = display.contentWidth * 4/ 8
 phoebe.y = display.contentHeight  * 6.4/ 8
 phoebe.width = 200
 phoebe.height = 200
