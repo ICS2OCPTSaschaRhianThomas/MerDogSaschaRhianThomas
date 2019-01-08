@@ -69,7 +69,6 @@ local function NextLevel( )
         composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
 
     elseif ( level == 3 ) then
-        level = 3
         composer.gotoScene( "complete_game", {effect = "flip", time = 1000})
     end
 end
@@ -126,7 +125,7 @@ end
             height = 150,
 
             -- When the button is released, call the Level1 screen transition function
-            onRelease = Level2ScreenTransition
+            onRelease = NextLevel
         } )
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
