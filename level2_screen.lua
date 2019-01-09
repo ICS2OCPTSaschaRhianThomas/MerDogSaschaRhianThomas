@@ -86,8 +86,6 @@ local heart2
 local heart3
 local heart4
 
--- 1 for add, 2 for subtract
-local addOrSubtract = 1
 
 -- character
 local character
@@ -130,13 +128,13 @@ local incorrectSoundChannel
 local function DetermineAnswers()
 
     -- calculate the correct answer as well as the wrong answers
-    if (addOrSubtract == 1) then 
-        answer = firstNumber - secondNumber
-    end 
-    wrongAnswer1 = answer - math.random(1,3)
+
+    answer = firstNumber - secondNumber
+
+    wrongAnswer1 = answer + math.random(1,3)
     
     wrongAnswer2 = answer - math.random(1,3)
-    wrongAnswer3 = answer - math.random(4,8)
+    wrongAnswer3 = answer + math.random(4,8)
 end
 
 -- Function that changes the answers for a new question and places them randomly in one of the positions
@@ -221,26 +219,6 @@ local function DisplayAddEquation()
         -- create the subtraction equation to display
         addEquationTextObject.text = firstNumber .. " - " .. secondNumber .. " = "
     end 
-  
-local function RestartScene()
-
- 
-    correct.isVisible = false
-    incorrect.isVisible = false
-
-    -- if they have 0 lives, go to the You Lose screen
-    if (lives == 0) then
-        composer.gotoScene("you_lose")
-
-    elseif (numberCorrect == 5) then
-        composer.gotoScene("you_win")
-    else
-        DisplayAddEquation()
-        DetermineAnswers()
-        DisplayAnswers()
-    end
-end
-
 -- function that operates update hearts
 local function UpdateHearts()
 
@@ -268,6 +246,28 @@ local function UpdateHearts()
 
     end
 end
+
+local function RestartScene()
+
+ 
+    correct.isVisible = false
+    incorrect.isVisible = false
+
+    -- if they have 0 lives, go to the You Lose screen
+    if (lives == 0) then
+        composer.gotoScene("you_lose")
+
+    elseif (numberCorrect == 5) then
+        composer.gotoScene("you_win")
+    else
+        DisplayAddEquation()
+        DetermineAnswers()
+        DisplayAnswers()
+        UpdateHearts()
+    end
+end
+
+
 
 -- Functions that checks if the buttons have been clicked.
 local function TouchListenerAnswer(touch)
@@ -520,6 +520,7 @@ function scene:show( event )
         -- initialize the number of lives and number correct 
         lives = 4
         numberCorrect = 0
+        level = 2
 
         -- listeners to each of the answer text objects
         AddTextObjectListeners()        

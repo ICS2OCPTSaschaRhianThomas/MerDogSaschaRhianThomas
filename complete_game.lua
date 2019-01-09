@@ -2,7 +2,6 @@
 -- complete_game.lua
 -- SceneTemplate.lua
 -- Scene Template (Composer API)
---
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
@@ -46,6 +45,11 @@ local bkg
 local function MainMenuScreenTransition( )
     composer.gotoScene( "main_menu", {effect = "flip", time = 1000})
 end 
+
+local function RetryLevel( )
+    composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
+end 
+
 --------------------------------------------------------------------------------------
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -85,7 +89,7 @@ end
             height = 150,
 
             -- When the button is released, call the Level1 screen transition function
-            onRelease = Level1ScreenTransition
+            onRelease = RetryLevel
         } )
 --------------------------------------------------------------------------------------------------
  -- Creating next level Button
@@ -96,8 +100,8 @@ end
             y = display.contentHeight*7/8,
 
             -- Insert the images here
-            defaultFile = "Images/NextLevelUnpressed.png",
-            overFile = "Images/NextLevelPressed.png",
+            defaultFile = "Images/mainMenuUnpressed.png",
+            overFile = "Images/mainMenuPressed.png",
 
             width = 200,
             height = 150,
