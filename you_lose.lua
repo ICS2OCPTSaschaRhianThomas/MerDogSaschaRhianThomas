@@ -198,6 +198,11 @@ function scene:show( event )
         -- Example: start timers, begin animation, play audio, etc.
         -- play losing sound
         loseSoundChannel = audio.play(loseSound)
+        if (level == 3) then
+            nextLevelButton.isVisible = false
+        else
+             nextLevelButton.isVisible = true
+        end
     end
 
 end
