@@ -31,7 +31,7 @@ local scene = composer.newScene( sceneName )
 ----------------------------------------------------------------------------------------
 -- play sound effect
 -- Logo sound
-local bkgMusic = audio.loadStream("Sounds/bkgMusic.mp3" ) 
+local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
 -- Setting a variable to an mp3 file
 local bkgMusicChannel
 
@@ -107,8 +107,6 @@ function scene:create( event )
     -- Associating display objects with this scene 
    sceneGroup:insert( bkg_image )
 
-    -- Send the background image to the back layer so all other objects can be on top
-    bkg_image:toBack()
 
     
     -----------------------------------------------------------------------------------------
@@ -229,7 +227,7 @@ function scene:show( event )
   
 
     elseif ( phase == "did" ) then       
-        bkgMusicChannel = audio.play(bkgMusic, {loops= 10})
+        bkgMusicChannel = audio.play(bkgMusic, {loops= -1})
 
     end
 
@@ -253,7 +251,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-        audio.stop()
+        audio.stop(bkgMusicChannel)
 
     -----------------------------------------------------------------------------------------
 
