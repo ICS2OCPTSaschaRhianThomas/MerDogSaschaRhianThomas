@@ -95,7 +95,7 @@ function scene:create( event )
     logo = display.newImageRect("Images/CompanyLogoSaschaM.png", 600, 600)
 
     --set initial x and y position of the logo
-    logo.x = -500
+    logo.x = -100
     logo.y = display.contentHeight/2
 
     -- set the transparency of the Logo
@@ -140,7 +140,7 @@ function scene:show( event )
 
 
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay ( 1500, gotoMainMenu)          
+        timer.performWithDelay ( 2000, gotoMainMenu)          
     end
 end --function scene:show( event )
 

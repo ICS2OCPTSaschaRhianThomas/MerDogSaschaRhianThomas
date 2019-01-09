@@ -71,7 +71,8 @@ local function NextLevel( )
         composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
 
     elseif ( level == 3 ) then
-        composer.gotoScene( "complete_game", {effect = "flip", time = 1000})
+        nextLevelButton.isVisible = false
+        --composer.gotoScene( "complete_game", {effect = "flip", time = 1000})
     end
 end
 
@@ -81,13 +82,27 @@ local function RetryLevel( )
 
         composer.gotoScene( "level1_screen", {effect = "flip", time = 1000})
 
+        --Play level 1 sound
+        local level1Sound = audio.loadStream( "Sounds/Level1.mp3" )
+        local level1SoundChannel =  audio.play(level1Sound, { channel=1, loops=-1 } )
+
+
     elseif ( level == 2 ) then
   
         composer.gotoScene( "level2_screen", {effect = "flip", time = 1000})
 
+        --Play level 2 sound
+        local level2Sound = audio.loadSound( "Sounds/Level2.mp3" )
+        local level2SoundChannel
+
+
     elseif ( level == 3 ) then
 
         composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
+
+        --Play level 3 sounds
+        local level3Sound = audio.loadSound( "Sounds/Level3.mp3" )
+        local level3SoundChannel
     end
 end
 
@@ -183,6 +198,11 @@ function scene:show( event )
         -- Example: start timers, begin animation, play audio, etc.
         -- play losing sound
         loseSoundChannel = audio.play(loseSound)
+        if (level == 3) then
+            nextLevelButton.isVisible = false
+        else
+             nextLevelButton.isVisible = true
+        end
     end
 
 end
@@ -205,6 +225,9 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
+
+        --nextLevelButton.isVisible = false
+        sceneGroup:insert( nextLevelButton )
         audio.stop()
     -----------------------------------------------------------------------------------------
 

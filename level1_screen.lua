@@ -83,7 +83,6 @@ local livesText
 local lives = 4
 local numberCorrect = 0
 
-
 local heart1
 local heart2
 local heart3

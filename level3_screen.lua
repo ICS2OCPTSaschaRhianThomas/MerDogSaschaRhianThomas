@@ -13,10 +13,6 @@
  local level3Sound = audio.loadSound( "Sounds/Level3.mp3" )
  local level3SoundChannel
 
- -- bkg game music
-local level3Sound = audio.loadSound("Sounds/bkgMusic.mp3" ) 
--- Setting a variable to an mp3 file
-local level3Channel
 ----------------------------------------------------------------------------------------
 
 -- Use Composer Library
@@ -111,6 +107,7 @@ local correctSound = audio.loadSound("Sounds/Correct.mp3" )
 local correctSoundChannel
 
 -- incorect sound
+
 local incorrectSound = audio.loadSound("Sounds/Incorrect.mp3" ) 
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
@@ -128,7 +125,7 @@ local function DetermineAnswers()
     end 
     wrongAnswer1 = answer + math.random(1,3)
     
-    wrongAnswer2 = answer - math.random(1,3)
+    wrongAnswer2 = answer - math.random(1)
     wrongAnswer3 = answer + math.random(4,8)
 end
 
