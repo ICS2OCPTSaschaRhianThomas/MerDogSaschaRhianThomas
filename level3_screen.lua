@@ -13,10 +13,6 @@
  local level3Sound = audio.loadSound( "Sounds/Level3.mp3" )
  local level3SoundChannel
 
- -- bkg game music
-local level3Sound = audio.loadSound("Sounds/bkgMusic.mp3" ) 
--- Setting a variable to an mp3 file
-local level3Channel
 ----------------------------------------------------------------------------------------
 
 -- Use Composer Library
