@@ -71,7 +71,8 @@ local function NextLevel( )
         composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
 
     elseif ( level == 3 ) then
-        composer.gotoScene( "complete_game", {effect = "flip", time = 1000})
+        nextLevelButton.isVisible = false
+        --composer.gotoScene( "complete_game", {effect = "flip", time = 1000})
     end
 end
 
@@ -219,6 +220,9 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
+
+        --nextLevelButton.isVisible = false
+        sceneGroup:insert( nextLevelButton )
         audio.stop()
     -----------------------------------------------------------------------------------------
 
