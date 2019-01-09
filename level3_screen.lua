@@ -8,12 +8,6 @@
 -----------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------
-    -- SOUNDS
-----------------------------------------------------------------------------------------
- local level3Sound = audio.loadSound( "Sounds/Level3.mp3" )
- local level3SoundChannel
-
-----------------------------------------------------------------------------------------
 
 -- Use Composer Library
 local composer = require( "composer" )
@@ -26,7 +20,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "level1_screen"
+sceneName = "level3_screen"
 
 -----------------------------------------------------------------------------------------
 
@@ -402,7 +396,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image
-    bkg = display.newImageRect("Images/level3Screen.png", display.contentWidth, display.contentHeight)
+    bkg = display.newImageRect("Images/Level3Screen.png", display.contentWidth, display.contentHeight)
     bkg.x = display.contentCenterX
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
@@ -501,8 +495,7 @@ function scene:show( event )
     --local sceneGroup = self.view
     local phase = event.phase
 
-    -- play bkg music
-    level3SoundChannel = audio.play(level3Sound)
+    
 
     -----------------------------------------------------------------------------------------
 
@@ -517,6 +510,8 @@ function scene:show( event )
         lives = 4
         numberCorrect = 0
         level = 3
+        -- play bkg music
+        level3SoundChannel = audio.play(level3Sound)
 
         -- listeners to each of the answer text objects
         AddTextObjectListeners()        
@@ -540,7 +535,7 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
 
-        audio.stop()
+        audio.stop(level3SoundChannel)
 
 
         -- Called when the scene is on screen (but is about to go off screen).
@@ -570,7 +565,6 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 
-    audio.stop(bkgMusic)
 
 end
 

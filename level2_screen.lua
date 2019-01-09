@@ -15,7 +15,7 @@
 ----------------------------------------------------------------------------------------
     -- SOUNDS
     ----------------------------------------------------------------------------------------
- local level2Sound = audio.loadSound( "Sounds/Level2.mp3" )
+local level2Sound = audio.loadSound( "Sounds/Level2.mp3" )
 local level2SoundChannel
     ----------------------------------------------------------------------------------------
 
@@ -106,10 +106,6 @@ local alreadyClickedAnswer = false
 -----------------------------------------------------------------------------------------
 -- SOUND
 -----------------------------------------------------------------------------------------
--- bkg game music
-local level1Sound = audio.loadSound("Sounds/Level1.mp3" ) 
--- Setting a variable to an mp3 file
-local level1Channel
 
 -- corect sound
 local correctSound = audio.loadSound("Sounds/Correct.mp3" ) 
@@ -505,8 +501,7 @@ function scene:show( event )
     --local sceneGroup = self.view
     local phase = event.phase
 
-    -- play bkg music
-    level1SoundChannel = audio.play(level1Sound)
+    
 
     -----------------------------------------------------------------------------------------
 
@@ -521,6 +516,8 @@ function scene:show( event )
         lives = 4
         numberCorrect = 0
         level = 2
+        -- play bkg music
+        level2SoundChannel = audio.play(level2Sound)
 
         -- listeners to each of the answer text objects
         AddTextObjectListeners()        
@@ -544,7 +541,7 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
 
-        audio.stop()
+        audio.stop(level2SoundChannel)
 
 
         -- Called when the scene is on screen (but is about to go off screen).
@@ -574,7 +571,6 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 
-    audio.stop(bkgMusic)
 
 end
 

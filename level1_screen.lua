@@ -13,7 +13,7 @@
     -- SOUNDS
     ----------------------------------------------------------------------------------------
  local level1Sound = audio.loadStream( "Sounds/Level1.mp3" )
- local level1SoundChannel =  audio.play(level1Sound, { channel=1, loops=-1 } )
+ local level1SoundChannel
 
 ----------------------------------------------------------------------------------------
 
@@ -530,6 +530,8 @@ function scene:show( event )
         numberCorrect = 0
         level = 1
 
+        level1SoundChannel =  audio.play(level1Sound, { channel=1, loops=-1 } )
+
         -- listeners to each of the answer text objects
         AddTextObjectListeners()        
 
@@ -552,19 +554,20 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
 
-        audio.stop()
+        audio.stop(level1SoundChannel)
 
 
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
         
-        -- remove the listeners when leaving the scene
-        RemoveTextObjectListeners()
+        
 
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
+        -- remove the listeners when leaving the scene
+        RemoveTextObjectListeners()
     end
 
 end
@@ -582,7 +585,6 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 
-    audio.stop(bkgMusic)
 
 end
 

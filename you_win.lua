@@ -79,25 +79,14 @@ local function RetryLevel( )
 
         composer.gotoScene( "level1_screen", {effect = "flip", time = 1000})
 
-        --Play level 1 sound
-        local level1Sound = audio.loadStream( "Sounds/Level1.mp3" )
-        local level1SoundChannel =  audio.play(level1Sound, { channel=1, loops=-1 } )
 
     elseif ( level == 2 ) then
 
         composer.gotoScene( "level2_screen", {effect = "flip", time = 1000})
 
-        --Play level 2 sound
-        local level2Sound = audio.loadSound( "Sounds/Level2.mp3" )
-        local level2SoundChannel
-
     elseif ( level == 3 ) then
 
         composer.gotoScene( "level3_screen", {effect = "flip", time = 1000})
-
-        --Play level 3 sounds
-        local level3Sound = audio.loadSound( "Sounds/Level3.mp3" )
-        local level3SoundChannel
 
     end
 end
@@ -213,7 +202,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-        audio.stop()
+        audio.stop(winSoundChannel )
 
     -----------------------------------------------------------------------------------------
 
