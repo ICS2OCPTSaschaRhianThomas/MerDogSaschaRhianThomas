@@ -103,6 +103,7 @@ local level1Text
 
 -- Boolean variable that states if user clicked the answer or not
 local alreadyClickedAnswer = false
+local muteButton
 
 -----------------------------------------------------------------------------------------
 -- SOUND
@@ -204,7 +205,38 @@ end
 local function DisplayAddEquation()
     -- local variables to this function
     local addEquationString
+----------------------------------------------------------------------------------------
+    local function MuteButton()
+    if (soundOn == true) then
+        audio.setVolume(0)
+        soundOn = false
+        muteButton.defaultFile = "Images/MutePressed.png"
+        muteButton.overFile = "Images/MutePressed.png"
+    else
+        audio.setVolume(1)
+        soundOn = true
+    end
+end
 
+--------------------------------
+    -- Creating mute Button
+    muteButton = widget.newButton( 
+        {
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth*1.5/10,
+            y = display.contentHeight*1.3/10,
+
+            -- Insert the images here
+            defaultFile = "Images/MuteUnpressed.png",
+            overFile = "Images/MutePressed.png",
+
+            width = 200,
+            height = 110,
+
+            --When the button is released, call the Credits transition function
+            onRelease = MuteButton
+        } )
+------------------------------------------------------------------------------------
     -- choose the numbers to add randomly
     firstNumber = math.random(MIN_NUM, MAX_NUM)
     secondNumber = math.random(MIN_NUM, MAX_NUM)
@@ -504,6 +536,7 @@ function scene:create( event )
     sceneGroup:insert( correct )
     sceneGroup:insert( incorrect )
     sceneGroup:insert( level1Text )
+    sceneGroup:insert( muteButton )
 end
 -----------------------------------------------------------------------------------------
 
