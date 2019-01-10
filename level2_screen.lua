@@ -245,7 +245,8 @@ end
 
 local function RestartScene()
 
- 
+    alreadyClickedAnswer = false
+    
     correct.isVisible = false
     incorrect.isVisible = false
 
@@ -270,12 +271,14 @@ local function TouchListenerAnswer(touch)
 
     
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
         -- get the user answer from the text object that was clicked on
         userAnswer = answerTextObject.text
-        
 
+         -- set that they clicked an answer
+        alreadyClickedAnswer = true
+        
         -- if the user gets the answer right, display Correct and call RestartSceneRight
         if (answer == tonumber(userAnswer)) then     
             correct.isVisible = true
@@ -294,9 +297,10 @@ local function TouchListenerWrongAnswer1(touch)
     -- get the user answer from the text object that was clicked on
     userAnswer = wrongAnswer1TextObject.text
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-     
+         -- set that they clicked an answer
+        alreadyClickedAnswer = true     
 
         if (answer ~= tonumber(userAnswer)) then
             -- decrease a life
@@ -320,10 +324,10 @@ local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongAnswer2TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-          
-
+            -- set that they clicked an answer
+            alreadyClickedAnswer = true
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
@@ -347,10 +351,10 @@ local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongAnswer3TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-          
-
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
