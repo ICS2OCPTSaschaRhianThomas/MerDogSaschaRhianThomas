@@ -223,15 +223,15 @@ end
     muteButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1.5/10,
-            y = display.contentHeight*1.3/10,
+            x = display.contentWidth*5/10,
+            y = display.contentHeight*9.3/10,
 
             -- Insert the images here
             defaultFile = "Images/MuteUnpressed.png",
             overFile = "Images/MutePressed.png",
 
-            width = 200,
-            height = 110,
+            width = 150,
+            height = 100,
 
             --When the button is released, call the Credits transition function
             onRelease = MuteButton
@@ -536,7 +536,7 @@ function scene:create( event )
     sceneGroup:insert( correct )
     sceneGroup:insert( incorrect )
     sceneGroup:insert( level1Text )
-    sceneGroup:insert( muteButton )
+
 end
 -----------------------------------------------------------------------------------------
 
