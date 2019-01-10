@@ -505,12 +505,12 @@ function scene:create( event )
     livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
 
     -- create the text object that will say Correct, set the colour and then hide it
-    correct = display.newText("Correct!", display.contentWidth*8.5/10, display.contentHeight*2/10, nil, 70 )
+    correct = display.newText("Correct!", display.contentWidth*6/10, display.contentHeight*7/10, nil, 70 )
     correct:setTextColor(0/255, 255/255, 0/255)
     correct.isVisible = false
 
         -- create the text object that will say Incorrect, set the colour and then hide it
-    incorrect = display.newText("Incorrect!", display.contentWidth*8.5/10, display.contentHeight*2/10, nil, 70 )
+    incorrect = display.newText("Incorrect!", display.contentWidth*6/10, display.contentHeight*7/10, nil, 70 )
     incorrect:setTextColor(255/255, 0/255, 0/255)
     incorrect.isVisible = false
 
