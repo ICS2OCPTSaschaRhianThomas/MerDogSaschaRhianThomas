@@ -245,7 +245,8 @@ end
 
 local function RestartScene()
 
- 
+    alreadyClickedAnswer = false
+    
     correct.isVisible = false
     incorrect.isVisible = false
 
@@ -270,12 +271,14 @@ local function TouchListenerAnswer(touch)
 
     
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
         -- get the user answer from the text object that was clicked on
         userAnswer = answerTextObject.text
-        
 
+         -- set that they clicked an answer
+        alreadyClickedAnswer = true
+        
         -- if the user gets the answer right, display Correct and call RestartSceneRight
         if (answer == tonumber(userAnswer)) then     
             correct.isVisible = true
@@ -294,9 +297,10 @@ local function TouchListenerWrongAnswer1(touch)
     -- get the user answer from the text object that was clicked on
     userAnswer = wrongAnswer1TextObject.text
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-     
+         -- set that they clicked an answer
+        alreadyClickedAnswer = true     
 
         if (answer ~= tonumber(userAnswer)) then
             -- decrease a life
@@ -320,10 +324,10 @@ local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongAnswer2TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-          
-
+            -- set that they clicked an answer
+            alreadyClickedAnswer = true
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
@@ -347,10 +351,10 @@ local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongAnswer3TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-          
-
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
@@ -460,12 +464,12 @@ function scene:create( event )
     livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
 
     -- create the text object that will say Correct, set the colour and then hide it
-    correct = display.newText("Correct!", display.contentWidth*8.5/10, display.contentHeight*2/10, nil, 70 )
+    correct = display.newText("Correct!", display.contentWidth*3/10, display.contentHeight*4/10, nil, 70 )
     correct:setTextColor(0/255, 255/255, 0/255)
     correct.isVisible = false
 
         -- create the text object that will say Incorrect, set the colour and then hide it
-    incorrect = display.newText("Incorrect!", display.contentWidth*8.5/10, display.contentHeight*2/10, nil, 70 )
+    incorrect = display.newText("Incorrect!", display.contentWidth*3/10, display.contentHeight*4/10, nil, 70 )
     incorrect:setTextColor(255/255, 0/255, 0/255)
     incorrect.isVisible = false
 

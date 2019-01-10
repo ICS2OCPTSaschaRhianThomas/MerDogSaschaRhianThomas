@@ -158,7 +158,7 @@ local function DisplayAnswers( )
 
     else
        
-        answerTextObject.x = display.contentWidth*.35        
+        answerTextObject.x = display.contentWidth*.35       
         wrongAnswer1TextObject.x = display.contentWidth*.45
         wrongAnswer2TextObject.x = display.contentWidth*.55
         wrongAnswer3TextObject.x = display.contentWidth*.65 
@@ -245,6 +245,7 @@ end
 
 local function RestartScene()
 
+    alreadyClickedAnswer = false
     correct.isVisible = false
     incorrect.isVisible = false
 
@@ -268,7 +269,10 @@ end
 -- Functions that checks if the buttons have been clicked.
 local function TouchListenerAnswer(touch)
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
         -- get the user answer from the text object that was clicked on
         userAnswer = answerTextObject.text
@@ -290,7 +294,10 @@ local function TouchListenerWrongAnswer1(touch)
     -- get the user answer from the text object that was clicked on
     userAnswer = wrongAnswer1TextObject.text
 
-    if (touch.phase == "ended") then
+    if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
         if (answer ~= tonumber(userAnswer)) then
             -- decrease a life
@@ -314,11 +321,12 @@ local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongAnswer2TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
 
           
-
-
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
                 lives = lives - 1
@@ -341,10 +349,11 @@ local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongAnswer3TextObject.text
 
       
-        if (touch.phase == "ended")  then
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
+        -- set that they clicked an answer
+        alreadyClickedAnswer = true
           
-
 
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
@@ -426,40 +435,40 @@ function scene:create( event )
     heart4.y = display.contentHeight * 1 / 13
 
     character = display.newImageRect("Images/Mermaid.png", 100, 150)
-    character.x = display.contentWidth * 2.2/ 8
-    character.y = display.contentHeight  * 4/ 8
-    character.width = 700
-    character.height = 700
+    character.x = display.contentWidth * 1.2/ 8
+    character.y = display.contentHeight  * 5.5/ 8
+    character.width = 300
+    character.height = 300
     --timer.performWithDelay( 2000, character ) 
 
     character2 = display.newImageRect("Images/Dog.png", 100, 150)
     character2.x = display.contentWidth * 6.7/ 8
     character2.y = display.contentHeight  * 6/ 8
-    character2.width = 300
-    character2.height = 300
+    character2.width = 200
+    character2.height = 200
 
     -- create the text object that will hold the add equation. Make it empty for now.
-    addEquationTextObject = display.newText( "", display.contentWidth*5/10, display.contentHeight*2/10, nil, 90 )
+    addEquationTextObject = display.newText( "", display.contentWidth*4.8/10, display.contentHeight*2/10, nil, 90 )
 
     -- sets the color of the add equation text object
     addEquationTextObject:setTextColor(255/255, 255/255, 100/255)
 
     -- create the text objects that will hold the correct answer and the wrong answers
-    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight*3.5/10, nil, 65 )
-    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight*3.5/10, nil, 65 )
-    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight*3.5/10, nil, 65 )
-    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight*3.5/10, nil, 65 )
+    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight*3/10, nil, 65 )
+    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight*3/10, nil, 65 )
+    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight*3/10, nil, 65 )
+    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight*3/10, nil, 65 )
 
     -- create the text object that will hold the number of lives
     livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
 
     -- create the text object that will say Correct, set the colour and then hide it
-    correct = display.newText("Correct!", display.contentWidth*8.5/10, display.contentHeight*2/10, nil, 70 )
+    correct = display.newText("Correct!", display.contentWidth*6/10, display.contentHeight*7/10, nil, 70 )
     correct:setTextColor(0/255, 255/255, 0/255)
     correct.isVisible = false
 
         -- create the text object that will say Incorrect, set the colour and then hide it
-    incorrect = display.newText("Incorrect!", display.contentWidth*8.5/10, display.contentHeight*2/10, nil, 70 )
+    incorrect = display.newText("Incorrect!", display.contentWidth*5.7/10, display.contentHeight*7/10, nil, 70 )
     incorrect:setTextColor(255/255, 0/255, 0/255)
     incorrect.isVisible = false
 
