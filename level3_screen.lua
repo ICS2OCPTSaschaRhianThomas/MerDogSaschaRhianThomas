@@ -473,8 +473,8 @@ function scene:create( event )
     incorrect.isVisible = false
 
     -- display the level text of time text and set the colour
-    level1Text = display.newText("LEVEL 3", display.contentWidth*2/12, display.contentHeight*11/12, nil, 50)
-    level1Text:setTextColor(0, 0, 0)
+    level3Text = display.newText("LEVEL 3", display.contentWidth*2/12, display.contentHeight*11/12, nil, 50)
+    level3Text:setTextColor(0, 0, 0)
     
     -- Insert objects into scene group
     sceneGroup:insert( bkg ) 
@@ -491,6 +491,7 @@ function scene:create( event )
     sceneGroup:insert( wrongAnswer1TextObject )
     sceneGroup:insert( wrongAnswer2TextObject )
     sceneGroup:insert( wrongAnswer3TextObject )
+    sceneGroup:insert( level3Text )
     sceneGroup:insert( correct )
     sceneGroup:insert( incorrect )
     sceneGroup:insert( level1Text )

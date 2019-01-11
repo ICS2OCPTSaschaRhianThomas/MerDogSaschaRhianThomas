@@ -1,17 +1,12 @@
 -- level1_screen.lua
 -- Created by: Gil Robern
--- Modified by: Your Name
+-- Modified by: sascha Motz
 -- Date: Month Day, Year
 -- Description: This is the level 1 screen of the game.
 -----------------------------------------------------------------------------------------
-
------------------------------------------------------------------------------------------
--- INITIALIZATIONS
------------------------------------------------------------------------------------------
-
 ----------------------------------------------------------------------------------------
     -- SOUNDS
-    ----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
  local level1Sound = audio.loadSound( "Sounds/Level1.mp3" )
  local level1SoundChannel
 
@@ -38,7 +33,6 @@ local scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
 -- GLOBAL VARIABLES
 -----------------------------------------------------------------------------------------
-
 level = 1
 
 -----------------------------------------------------------------------------------------
@@ -47,7 +41,6 @@ level = 1
 
 -- The local variables for this scene
 local bkg
-
 
 -- determine the range for the numbers to add
 local MIN_NUM = 1
@@ -72,17 +65,12 @@ local wrongAnswer1TextObject
 local wrongAnswer2TextObject
 local wrongAnswer3TextObject
 
--- displays the number correct that the user has
---local numberCorrectText 
-
--- displays the number incorrect that the user has
---local numberIncorrectText 
-
 -- displays the lives
 local livesText 
 local lives = 4
 local numberCorrect = 0
 
+-- displays the hearts
 local heart1
 local heart2
 local heart3
@@ -123,7 +111,6 @@ local incorrectSound = audio.loadSound("Sounds/Incorrect.mp3" )
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
 
-
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -153,7 +140,6 @@ local function DisplayAnswers( )
         wrongAnswer2TextObject.x = display.contentWidth*.35
         wrongAnswer3TextObject.x = display.contentWidth*.65 
 
-
     elseif (answerPosition == 2) then
        
         answerTextObject.x = display.contentWidth*.45        
@@ -168,7 +154,6 @@ local function DisplayAnswers( )
         wrongAnswer2TextObject.x = display.contentWidth*.55
         wrongAnswer3TextObject.x = display.contentWidth*.45 
 
-
     else
        
         answerTextObject.x = display.contentWidth*.35        
@@ -176,7 +161,6 @@ local function DisplayAnswers( )
         wrongAnswer2TextObject.x = display.contentWidth*.55
         wrongAnswer3TextObject.x = display.contentWidth*.65 
     end
-
 end
 
 -- make the correct object visible
@@ -572,7 +556,6 @@ function scene:show( event )
         -- call the function to restart the scene
         RestartLevel1()
     end
-
 end
 
 -----------------------------------------------------------------------------------------
