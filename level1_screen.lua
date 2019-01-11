@@ -117,6 +117,7 @@ local incorrectSoundChannel
 
 local function DetermineAnswers()
     -- calculate the correct answer as well as the wrong answers
+    
     answer = firstNumber + secondNumber
     wrongAnswer1 = answer - math.random(1,3)
     wrongAnswer2 = answer + math.random(4,8)
