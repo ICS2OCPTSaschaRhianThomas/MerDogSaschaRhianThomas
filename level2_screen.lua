@@ -484,6 +484,7 @@ function scene:create( event )
     sceneGroup:insert( heart2 )
     sceneGroup:insert( heart3 )
     sceneGroup:insert( heart4 )
+    sceneGroup:insert( muteButton )
     sceneGroup:insert( character )
     sceneGroup:insert( character2 )
     sceneGroup:insert( livesText )
@@ -494,7 +495,7 @@ function scene:create( event )
     sceneGroup:insert( wrongAnswer3TextObject )
     sceneGroup:insert( correct )
     sceneGroup:insert( incorrect )
-    sceneGroup:insert( level2Text )
+  
 end
 -----------------------------------------------------------------------------------------
 

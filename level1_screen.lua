@@ -536,6 +536,7 @@ function scene:create( event )
     sceneGroup:insert( correct )
     sceneGroup:insert( incorrect )
     sceneGroup:insert( level1Text )
+    
 
 end
 -----------------------------------------------------------------------------------------
