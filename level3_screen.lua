@@ -158,7 +158,7 @@ local function DisplayAnswers( )
 
     else
        
-        answerTextObject.x = display.contentWidth*.35        
+        answerTextObject.x = display.contentWidth*.35       
         wrongAnswer1TextObject.x = display.contentWidth*.45
         wrongAnswer2TextObject.x = display.contentWidth*.55
         wrongAnswer3TextObject.x = display.contentWidth*.65 
@@ -405,7 +405,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image
-    bkg = display.newImageRect("Images/Level1Screen.png", display.contentWidth, display.contentHeight)
+    bkg = display.newImageRect("Images/Level3Screen.png", display.contentWidth, display.contentHeight)
     bkg.x = display.contentCenterX
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
@@ -435,29 +435,29 @@ function scene:create( event )
     heart4.y = display.contentHeight * 1 / 13
 
     character = display.newImageRect("Images/Mermaid.png", 100, 150)
-    character.x = display.contentWidth * 2.2/ 8
-    character.y = display.contentHeight  * 4/ 8
-    character.width = 700
-    character.height = 700
+    character.x = display.contentWidth * 1.2/ 8
+    character.y = display.contentHeight  * 5.5/ 8
+    character.width = 300
+    character.height = 300
     --timer.performWithDelay( 2000, character ) 
 
     character2 = display.newImageRect("Images/Dog.png", 100, 150)
     character2.x = display.contentWidth * 6.7/ 8
     character2.y = display.contentHeight  * 6/ 8
-    character2.width = 300
-    character2.height = 300
+    character2.width = 200
+    character2.height = 200
 
     -- create the text object that will hold the add equation. Make it empty for now.
-    addEquationTextObject = display.newText( "", display.contentWidth*5/10, display.contentHeight*2/10, nil, 90 )
+    addEquationTextObject = display.newText( "", display.contentWidth*4.8/10, display.contentHeight*2/10, nil, 90 )
 
     -- sets the color of the add equation text object
     addEquationTextObject:setTextColor(255/255, 255/255, 100/255)
 
     -- create the text objects that will hold the correct answer and the wrong answers
-    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight*3.5/10, nil, 65 )
-    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight*3.5/10, nil, 65 )
-    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight*3.5/10, nil, 65 )
-    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight*3.5/10, nil, 65 )
+    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight*3/10, nil, 65 )
+    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight*3/10, nil, 65 )
+    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight*3/10, nil, 65 )
+    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight*3/10, nil, 65 )
 
     -- create the text object that will hold the number of lives
     livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
