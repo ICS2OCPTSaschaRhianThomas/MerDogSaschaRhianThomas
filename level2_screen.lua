@@ -494,7 +494,7 @@ function scene:create( event )
     sceneGroup:insert( wrongAnswer3TextObject )
     sceneGroup:insert( correct )
     sceneGroup:insert( incorrect )
-  
+    sceneGroup:insert( level2Text )
 end
 -----------------------------------------------------------------------------------------
 
