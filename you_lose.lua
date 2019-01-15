@@ -106,6 +106,7 @@ local function RetryLevel( )
     end
 end
 
+
  
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -125,7 +126,7 @@ function scene:create( event )
     bkg.height = display.contentHeight
 
 
-      -----------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
     -----------------------------------------------------------------------------------------   
 
@@ -166,10 +167,11 @@ function scene:create( event )
             onRelease = NextLevel
         } )
 
+    
     sceneGroup:insert( bkg )
     sceneGroup:insert( retryButton )
     sceneGroup:insert( nextLevelButton )
-
+   
 end
 
 -----------------------------------------------------------------------------------------
