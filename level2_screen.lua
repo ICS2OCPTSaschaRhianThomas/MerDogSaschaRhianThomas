@@ -102,7 +102,7 @@ local level2Text
 
 -- Boolean variable that states if user clicked the answer or not
 local alreadyClickedAnswer = false
-
+soundOn = true 
 -----------------------------------------------------------------------------------------
 -- SOUND
 -----------------------------------------------------------------------------------------

@@ -34,7 +34,7 @@ local scene = composer.newScene( sceneName )
 -- GLOBAL VARIABLES
 -----------------------------------------------------------------------------------------
 level = 1
-
+soundOn = true 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -91,7 +91,7 @@ local level1Text
 
 -- Boolean variable that states if user clicked the answer or not
 local alreadyClickedAnswer = false
-
+local muteButton
 
 -----------------------------------------------------------------------------------------
 -- SOUND
@@ -186,6 +186,17 @@ local function WinScreenTransition( )
     composer.gotoScene( "you_win", {effect = "zoomInOutFade", time = 1000})
 end 
 
+local function MuteButton()
+    if (soundOn == true) then
+        audio.setVolume(0)
+        soundOn = false
+        muteButton.defaultFile = "Images/MutePressed.png"
+        muteButton.overFile = "Images/MutePressed.png"
+    else
+        audio.setVolume(1)
+        soundOn = true
+    end
+end
 
 -- The function that displays the equation and determines the answer and the wrong answers
 local function DisplayAddEquation()
@@ -195,7 +206,24 @@ local function DisplayAddEquation()
     
 
 
+--------------------------------
+    -- Creating mute Button
+    muteButton = widget.newButton( 
+        {
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth*5/10,
+            y = display.contentHeight*9.3/10,
 
+            -- Insert the images here
+            defaultFile = "Images/MuteUnpressed.png",
+            overFile = "Images/MutePressed.png",
+
+            width = 150,
+            height = 100,
+
+            --When the button is released, call the Credits transition function
+            onRelease = MuteButton
+        } )
 ------------------------------------------------------------------------------------
     -- choose the numbers to add randomly
     firstNumber = math.random(MIN_NUM, MAX_NUM)
