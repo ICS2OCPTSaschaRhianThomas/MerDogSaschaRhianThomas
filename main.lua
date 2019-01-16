@@ -36,4 +36,4 @@ math.randomseed(tonumber(newSeed))
 math.randomseed(os.time())
 
 -- Go to the intro screen
-composer.gotoScene( "splash_screen" )
+composer.gotoScene( "Level3_Screen" )

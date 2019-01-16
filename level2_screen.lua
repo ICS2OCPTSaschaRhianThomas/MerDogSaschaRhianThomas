@@ -103,6 +103,7 @@ local level2Text
 -- Boolean variable that states if user clicked the answer or not
 local alreadyClickedAnswer = false
 soundOn = true 
+local muteButton
 -----------------------------------------------------------------------------------------
 -- SOUND
 -----------------------------------------------------------------------------------------
@@ -372,7 +373,36 @@ local function TouchListenerWrongAnswer3(touch)
     
         end
 end
-    
+
+local function MuteButton()
+    if (soundOn == true) then
+        audio.setVolume(0)
+        soundOn = false
+        muteButton.defaultFile = "Images/MutePressed.png"
+        muteButton.overFile = "Images/MutePressed.png"
+    else
+        audio.setVolume(1)
+        soundOn = true
+    end
+end
+    --------------------------------
+    -- Creating mute Button
+    muteButton = widget.newButton( 
+        {
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth*5/10,
+            y = display.contentHeight*9.3/10,
+
+            -- Insert the images here
+            defaultFile = "Images/MuteUnpressed.png",
+            overFile = "Images/MutePressed.png",
+
+            width = 150,
+            height = 100,
+
+            --When the button is released, call the Credits transition function
+            onRelease = MuteButton
+        } )
 -- Function that adds the touch listeners to each of the answer objects
 local function AddTextObjectListeners()
 
